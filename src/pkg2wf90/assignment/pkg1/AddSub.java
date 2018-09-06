@@ -11,12 +11,20 @@ package pkg2wf90.assignment.pkg1;
  */
 public class AddSub extends Function{
 
-
+    boolean add;
+    
+    AddSub(boolean add){
+        this.add = add;
+    }
 
     @Override
     void run(Number a, Number b) {
+        if(add) {
+            add(a,b);
+        } else {
+            sub(a,b);
+        }
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     Number add(Number num1, Number num2) {
