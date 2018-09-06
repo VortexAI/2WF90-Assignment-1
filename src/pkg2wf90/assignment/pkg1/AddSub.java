@@ -15,7 +15,34 @@ public class AddSub extends Function{
 
     @Override
     void run(Number a, Number b) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    Number add(Number num1, Number num2) {
+	if (num1.isPositive() && num2.isPositive() || !num1.isPositive() && !num2.isPositive()) {
+		return new Number(addition(num1, num2), num1.getRadix(), num1.isPositive());
+	} else if (num1.isPositive() && !num2.isPositive()) {
+		return sub(num1, num2);
+	} else {
+		return sub(num2, num1);
+	}
+    }
+    
+    int[] addition(Number num1, Number num2) {
+	convert(num1, num2);
+	int[] result = new int[num1.value.length + 1];
+	int base = num1.radix;
+	int carry = 0;
+	for (int i = num1.value.length-1; i >= 0; i++) {
+            
+        }
+        return result;
+    }
+    
+    Number sub(Number num1, Number num2) {
+        return num1;
+    }
+    
     
 }
