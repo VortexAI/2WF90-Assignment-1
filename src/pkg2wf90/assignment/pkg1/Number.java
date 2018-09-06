@@ -23,14 +23,23 @@ public class Number {
         
     }
     
+    Number(int[] value, int radix, boolean positive){
+        this.value = value;
+        this.radix = radix;
+        this.positive = positive;
+        this.number = intToStringArr(value);
+    }
+    
     public void stringToIntArr(int l){
         
         
     }
     
-    public void intToStringArr(int[] a){
+    public char[] intToStringArr(int[] a){
         
+        char[] result = new char[0];
         
+        return result;
     }
     
     public void flip(){

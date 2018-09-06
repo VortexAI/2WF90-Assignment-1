@@ -5,17 +5,25 @@
  */
 package pkg2wf90.assignment.pkg1;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 /**
  *
  * @author s151810
  */
 public class Assignment1 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    private void run(String[] args) throws FileNotFoundException{
+        String file = args[1];
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        Assignment1 a = new Assignment1();
+        a.run(args);
     }
     
 }
