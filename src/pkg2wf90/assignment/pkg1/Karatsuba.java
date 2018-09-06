@@ -12,8 +12,8 @@ package pkg2wf90.assignment.pkg1;
 public class Karatsuba extends Function{
 
     @Override
-    void run(int[] i, int[] j) {
+    void run(Number a, Number b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

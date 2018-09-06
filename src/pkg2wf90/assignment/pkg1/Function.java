@@ -23,5 +23,5 @@ abstract public class Function {
         }
     }
     
-    abstract void run(int[] i, int[] j);
+    abstract void run(Number a, Number b);
 }
