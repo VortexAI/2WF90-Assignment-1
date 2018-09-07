@@ -24,16 +24,17 @@ public class AddSub extends Function{
         } else {
             sub(a,b);
         }
-        
     }
     
     Number add(Number num1, Number num2) {
 	if (num1.isPositive() && num2.isPositive() || !num1.isPositive() && !num2.isPositive()) {
-		return new Number(addition(num1, num2), num1.getRadix(), num1.isPositive());
+            return new Number(addition(num1, num2), num1.getRadix(), num1.isPositive());
 	} else if (num1.isPositive() && !num2.isPositive()) {
-		return sub(num1, num2);
+            num2.flip();
+            return sub(num1, num2);
 	} else {
-		return sub(num2, num1);
+            num1.flip();
+            return sub(num2, num1);
 	}
     }
     
@@ -42,15 +43,54 @@ public class AddSub extends Function{
 	int[] result = new int[num1.value.length + 1];
 	int base = num1.radix;
 	int carry = 0;
-	for (int i = num1.value.length-1; i >= 0; i++) {
-            
+	for (int i = num1.value.length - 1; i >= 0; i++) {
+            result[i] = num1.value[i] + num2.value[i] + carry;
+            if (result[i] >= base) {
+                result[i] = result[i] - base;
+                carry = 1;
+            } else {
+                carry = 0;
+            }
         }
+        result[0] = carry;
         return result;
     }
     
     Number sub(Number num1, Number num2) {
-        return num1;
+        if (num1.isPositive() && num2.isPositive()) {
+            if (num1.thisBiggerThan(num2)) {
+                return new Number(subtraction(num1, num2),num1.radix , true);
+            } else {
+                return new Number(subtraction(num2, num1), num1.radix, false);
+            }
+        } else if (!num1.isPositive() && num2.isPositive()) {
+            return new Number(addition(num1, num2),num1.radix , false);
+        } else if (num1.isPositive() && !num2.isPositive()) {
+            return new Number(addition(num1, num2),num1.radix , true);
+        } else {
+            if (num1.thisBiggerThan(num2)) {
+                return new Number(subtraction(num1, num2),num1.radix , false);
+            } else {
+                return new Number(subtraction(num2, num1), num1.radix, true);
+            }
+        }
     }
     
+    int[] subtraction(Number num1, Number num2) {
+	convert(num1, num2);
+	int[] result = new int[num1.value.length];
+	int base = num1.radix;
+	int carry = 0;
+	for (int i = num1.value.length - 1; i >= 0; i++) {
+            result[i] = num1.value[i] - num2.value[i] - carry;
+            if (result[i] < 0) {
+                result[i] = result[i] + base;
+                carry = 1;
+            } else {
+                carry = 0;
+            }
+        }
+        return result;
+    }
     
 }

@@ -28,9 +28,9 @@ public class Assignment1 {
                 String x = sc.nextLine().split(" ")[1];
                 String y = sc.nextLine().split(" ")[1];
                 if(Assignment.equals("[add]")){
-                    func = new AddSub();    
+                    func = new AddSub(true);    
                 } else if(Assignment.equals("[subtract]")){
-                    func = new AddSub();
+                    func = new AddSub(false);
                 } else if(Assignment.equals("[multiply]")){
                     func = new EzMult();
                 } else if(Assignment.equals("[karatsuba]")){
