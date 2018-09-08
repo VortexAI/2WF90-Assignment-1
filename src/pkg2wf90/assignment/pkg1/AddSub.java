@@ -18,7 +18,7 @@ public class AddSub extends Function{
     }
 
     @Override
-    void run(Number a, Number b) {
+    Number run(Number a, Number b) {
         if(add) {
             add(a,b);
         } else {

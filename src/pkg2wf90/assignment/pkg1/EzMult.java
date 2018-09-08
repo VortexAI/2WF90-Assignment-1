@@ -13,7 +13,7 @@ public class EzMult extends Function{
 
 
     @Override
-    void run(Number a, Number b) {
+    Number run(Number a, Number b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
