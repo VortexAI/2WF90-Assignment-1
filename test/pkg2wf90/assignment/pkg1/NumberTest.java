@@ -37,6 +37,24 @@ public class NumberTest {
         }
         assertTrue(check);
     }
+        
+    @Test
+    public void testStringToIntArrNeg() {
+        boolean check = false;
+        System.out.println("stringToIntArr");
+        Number a = new Number("-123", 10, false);
+        int[] result = {1,2,3};
+        a.stringToIntArr(result.length);
+        for(int i = 0; i<a.getIntArr().length; i++){
+            if(a.getIntArr()[i] == result[i]){
+                check = true;
+            } else {
+                check = false;
+                break;
+            }
+        }
+        assertTrue(check);
+    }
     
     @Test
     public void testStringToIntArrBiggerLength() {

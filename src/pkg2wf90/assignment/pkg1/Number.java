@@ -56,11 +56,15 @@ public class Number {
     }
     
     public void stringToIntArr(int l){
+        int index = 0;
+        if(!positive){
+            index = 1;
+        }
         int[] result = new int[l];
         for(int i : result){
             i = 0;
         }
-        for(int i = l-1; i>= l- number.length; i--){
+        for(int i = l-1; i >= l- number.length + index; i--){
             result[i] = libChar.get(number[i-(l-number.length)]);
         }
         this.value = result;
@@ -100,7 +104,7 @@ public class Number {
     }
     
     /**
-     * 
+     * Takes a number of equal length to be compared to.
      * @param other String you want to check to be smaller
      * @return 
      */

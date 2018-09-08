@@ -18,18 +18,15 @@ public class Assignment1 {
 
     private void run(String[] args) throws FileNotFoundException{
         String file = System.getProperty("user.dir");
-        System.out.println(file);
-        //file = file + args[1];
-        Scanner sc = new Scanner(System.in);
-        //new FileReader(file)
-        System.out.println(file);
         
+        file = file + "\\example.txt";
+        Scanner sc = new Scanner(new FileReader(file));
         Function func;
-        Number num3;
+        
         while(sc.hasNext()){
             String a = sc.nextLine();
             if(a.startsWith("[radix]")){ 
-                
+                Number num3;
                 int radix = Integer.parseInt(a.split(" ")[a.split(" ").length-1]);
                 String Assignment = sc.nextLine();
                 String[] xl = sc.nextLine().split(" ");
@@ -53,11 +50,11 @@ public class Assignment1 {
                 Number num2 = new Number(y, radix, !y.startsWith("-"));
                 num3 = func.run(num1, num2);
                 
-                System.out.println(num3.getChars().length);
                 System.out.print("[answer] ");
                 for(char d: num3.getChars()){
                     System.out.print(d);
                 }
+                System.out.print("\n");
             } 
         }
     }
