@@ -17,7 +17,7 @@ abstract public class Function {
             a.stringToIntArr(length);
             b.stringToIntArr(length);
         } else {
-            int length = a.getChars().length;
+            int length = b.getChars().length;
             a.stringToIntArr(length);
             b.stringToIntArr(length);
         }

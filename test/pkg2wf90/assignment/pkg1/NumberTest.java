@@ -127,6 +127,38 @@ public class NumberTest {
         System.out.println(a.getChars().length);
         assertArrayEquals(expResult, result);
     }
+    
+    @Test
+    public void testIntToStringArrNeg0() {
+        System.out.println("intToStringArr");
+        Number a = new Number(new int[] {0,0,0}, 10, false);
+        Number instance = null;
+        char[] expResult = new char[] {'0'};
+        char[] result = a.getChars();
+        System.out.println(a.getChars().length);
+        assertArrayEquals(expResult, result);
+    }
+    
+    @Test
+    public void testIntToStringArrHexNegFrontZeroes() {
+        System.out.println("intToStringArr");
+        boolean check = false;
+        Number a = new Number(new int[] {0, 0, 2,15,11}, 16, false);
+        Number instance = null;
+        char[] expResult = new char[] {'-', '2', 'f', 'b'};
+        char[] result = a.getChars();
+        System.out.println(a.getChars().length);
+        for(int i = 0; i < a.getChars().length; i++){
+            if(a.getChars()[i] == expResult[i]){
+                check = true;
+                System.out.println(a.getChars()[i]);
+            } else {
+                check = false; 
+                break;
+            }
+        }
+        assertTrue(check);
+    }
 
     /**
      * Test of thisBiggerThan method, of class Number.

@@ -17,18 +17,26 @@ import java.util.ArrayList;
 public class Assignment1 {
 
     private void run(String[] args) throws FileNotFoundException{
-        String file = args[1];
-        Scanner sc = new Scanner(new FileReader(file));
+        String file = System.getProperty("user.dir");
+        System.out.println(file);
+        //file = file + args[1];
+        Scanner sc = new Scanner(System.in);
+        //new FileReader(file)
+        System.out.println(file);
+        
         Function func;
         Number num3;
         while(sc.hasNext()){
             String a = sc.nextLine();
             if(a.startsWith("[radix]")){ 
                 
-                int radix = Integer.parseInt(a.split(" ")[1]);
+                int radix = Integer.parseInt(a.split(" ")[a.split(" ").length-1]);
                 String Assignment = sc.nextLine();
-                String x = sc.nextLine().split(" ")[1];
-                String y = sc.nextLine().split(" ")[1];
+                String[] xl = sc.nextLine().split(" ");
+                String x = xl[xl.length-1];
+                String[] yl = sc.nextLine().split(" ");
+                String y = yl[yl.length-1];
+                
                 if(Assignment.equals("[add]")){
                     func = new AddSub(true);    
                 } else if(Assignment.equals("[subtract]")){
@@ -44,23 +52,14 @@ public class Assignment1 {
                 Number num1 = new Number(x, radix, !x.startsWith("-"));
                 Number num2 = new Number(y, radix, !y.startsWith("-"));
                 num3 = func.run(num1, num2);
-                ArrayList<Character> result = new ArrayList<Character>();
-                if(checkZero(num3)){
-                    System.out.println("[answer] 0");
-                } else {
-                    System.out.println("[answer] " + num3.getChars());
+                
+                System.out.println(num3.getChars().length);
+                System.out.print("[answer] ");
+                for(char d: num3.getChars()){
+                    System.out.print(d);
                 }
             } 
         }
-    }
-    
-    boolean checkZero(Number a){
-        for (int i : a.getIntArr()){
-            if(i != 0){
-                return false;
-            }
-        }
-        return true;
     }
     
     public static void main(String[] args) throws FileNotFoundException {

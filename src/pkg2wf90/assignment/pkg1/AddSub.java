@@ -44,7 +44,7 @@ public class AddSub extends Function{
 	int[] result = new int[num1.value.length + 1];
 	int base = num1.radix;
 	int carry = 0;
-	for (int i = num1.value.length - 1; i >= 0; i++) {
+	for (int i = num1.value.length - 1; i >= 0; i--) {
             result[i] = num1.value[i] + num2.value[i] + carry;
             if (result[i] >= base) {
                 result[i] = result[i] - base;
@@ -82,7 +82,7 @@ public class AddSub extends Function{
 	int[] result = new int[num1.value.length];
 	int base = num1.radix;
 	int carry = 0;
-	for (int i = num1.value.length - 1; i >= 0; i++) {
+	for (int i = num1.value.length - 1; i >= 0; i--) {
             result[i] = num1.value[i] - num2.value[i] - carry;
             if (result[i] < 0) {
                 result[i] = result[i] + base;
