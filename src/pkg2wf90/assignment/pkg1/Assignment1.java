@@ -8,6 +8,7 @@ package pkg2wf90.assignment.pkg1;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Assignment1 {
         String file = args[1];
         Scanner sc = new Scanner(new FileReader(file));
         Function func;
+        Number num3;
         while(sc.hasNext()){
             String a = sc.nextLine();
             if(a.startsWith("[radix]")){ 
@@ -41,9 +43,24 @@ public class Assignment1 {
                 
                 Number num1 = new Number(x, radix, !x.startsWith("-"));
                 Number num2 = new Number(y, radix, !y.startsWith("-"));
-                func.run(num1, num2);
+                num3 = func.run(num1, num2);
+                ArrayList<Character> result = new ArrayList<Character>();
+                if(checkZero(num3)){
+                    System.out.println("[answer] 0");
+                } else {
+                    System.out.println("[answer] " + num3.getChars());
+                }
             } 
         }
+    }
+    
+    boolean checkZero(Number a){
+        for (int i : a.getIntArr()){
+            if(i != 0){
+                return false;
+            }
+        }
+        return true;
     }
     
     public static void main(String[] args) throws FileNotFoundException {

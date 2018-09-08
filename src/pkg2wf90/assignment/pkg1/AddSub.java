@@ -24,6 +24,7 @@ public class AddSub extends Function{
         } else {
             sub(a,b);
         }
+        return new Number("1", 2, false);
     }
     
     Number add(Number num1, Number num2) {

@@ -5,6 +5,7 @@
  */
 package pkg2wf90.assignment.pkg1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,23 +68,33 @@ public class Number {
     
     public char[] intToStringArr(int[] a){
         
-        char[] result = new char[0];
-        boolean NonZero = true;
+        char[] result;
+        ArrayList<Character> inter = new ArrayList<Character>();
+        boolean nonZero = false;
         
-        for(int i = 0; i < a.length; i++){
-            if(i == 0 && NonZero){
-                
-            } else if(i != 0 && NonZero){
-                result[i] = libInt[i];
-                NonZero = false;
-            } else {
-                result[i] = libInt[i];
+        for(int i : a){
+            if (i !=0 && !nonZero) {
+                if(!positive){
+                    inter.add('-');
+                }
+                inter.add(libInt[i]);
+                nonZero=true;
+            } else if (nonZero){
+                inter.add(libInt[i]);
             }
         }
-        
+        if(inter.size() == 0){
+            return new char[] {'0'};
+        }
+        result = new char[inter.size()];
+        for(int i = 0; i <result.length; i++){
+            result[i] = inter.get(i).charValue();
+        }
         return result;
     }
-    
+    /**
+     * swaps the value of positive with its inverse value
+     */
     public void flip(){
         positive = !positive;
     }
@@ -94,12 +105,38 @@ public class Number {
      * @return 
      */
     public boolean thisBiggerThan(Number other){
-        return true;
+        if(this.positive && !other.isPositive()){
+            return true;
+        } else if(!this.positive && other.isPositive()){
+            return false;
+        } else if(this.positive){
+            for(int i = 0; i < value.length; i++){
+                if(value[i] == other.getIntArr()[i]){
+                    
+                } else if (value[i] > other.getIntArr()[i]){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        } else {
+            for(int i = 0; i < value.length; i++){
+                if(value[i] == other.getIntArr()[i]){
+                    
+                } else if (value[i] < other.getIntArr()[i]){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+        return false;
     }
     
     public char[] getChars(){
         return number;
     }
+    
     
     public int getRadix(){
         return radix;
