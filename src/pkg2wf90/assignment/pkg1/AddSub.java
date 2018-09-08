@@ -24,7 +24,7 @@ public class AddSub extends Function{
         } else {
             sub(a,b);
         }
-        return new Number("1", 2, false);
+        return new Number( 2, false);
     }
     
     Number add(Number num1, Number num2) {
@@ -54,6 +54,18 @@ public class AddSub extends Function{
             }
         }
         result[0] = carry;
+        for(int s: num2.value){
+            System.out.print(s);
+        }
+        System.out.print("\n");
+        for(int s: num1.value){
+            System.out.print(s);
+        }
+        System.out.print("\n");
+        for(int s: result){
+            System.out.print(s);
+        }
+        System.out.print("\n");
         return result;
     }
     
