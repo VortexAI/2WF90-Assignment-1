@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg2wf90.assignment.pkg1;
 
-/**
- *
- * @author s151810
- */
 public class AddSub extends Function{
 
     boolean add;
@@ -16,20 +7,35 @@ public class AddSub extends Function{
     AddSub(boolean add){
         this.add = add;
     }
-
+    
+    /** Sends the numbers to the correct section (adding/subtracting)
+     * 
+     * @param num1 The first number
+     * @param num2 The second number
+     * @return the result of the addition/subtraction
+     */
     @Override
-    Number run(Number a, Number b) {
+    Number run(Number num1, Number num2) {
+        convert(num1, num2);
         if(add) {
-            add(a,b);
+            return add(num1, num2);
         } else {
-            sub(a,b);
+            return sub(num1, num2);
         }
-        return new Number( 2, false);
     }
     
+    /** Does a case distinction on given numbers for addition
+     * 
+     * @param num1 First Number
+     * @param num2 Second Number
+     * @return The result of adding both numbers
+     */
     Number add(Number num1, Number num2) {
+        // If both are positive or both negative we add
 	if (num1.isPositive() && num2.isPositive() || !num1.isPositive() && !num2.isPositive()) {
             return new Number(addition(num1, num2), num1.getRadix(), num1.isPositive());
+            
+        // If one is negative, we subtract the negative from the positive
 	} else if (num1.isPositive() && !num2.isPositive()) {
             num2.flip();
             return sub(num1, num2);
@@ -39,63 +45,88 @@ public class AddSub extends Function{
 	}
     }
     
+    /** Does the addition of two numbers
+     * 
+     * @param num1 The first number
+     * @param num2 The second number
+     * @return An int array containing the result of the addition
+     */
     int[] addition(Number num1, Number num2) {
-	convert(num1, num2);
+        // create result array
 	int[] result = new int[num1.value.length + 1];
 	int base = num1.radix;
 	int carry = 0;
+        
+        // loop over all elements from back to front
 	for (int i = num1.value.length - 1; i >= 0; i--) {
-            result[i] = num1.value[i] + num2.value[i] + carry;
-            if (result[i] >= base) {
-                result[i] = result[i] - base;
+            // do the addition
+            result[i + 1] = num1.value[i] + num2.value[i] + carry;
+            
+            // change number to correct base if needed and adjust carry
+            if (result[i + 1] >= base) {
+                result[i + 1] = result[i + 1] - base;
                 carry = 1;
             } else {
                 carry = 0;
             }
         }
         result[0] = carry;
-        for(int s: num2.value){
-            System.out.print(s);
-        }
-        System.out.print("\n");
-        for(int s: num1.value){
-            System.out.print(s);
-        }
-        System.out.print("\n");
-        for(int s: result){
-            System.out.print(s);
-        }
-        System.out.print("\n");
         return result;
     }
     
+    /** Does a case distinction on the two numbers for subtraction
+     * 
+     * @param num1 The first number
+     * @param num2 The second number
+     * @return The result of subtracting num2 from num1
+     */
     Number sub(Number num1, Number num2) {
+        // if both are positive
         if (num1.isPositive() && num2.isPositive()) {
+            // if num1 is bigger than num2, then subtract as normal
             if (num1.thisBiggerThan(num2)) {
                 return new Number(subtraction(num1, num2),num1.radix , true);
+            // else subtract num1 from num2 and change the sign
             } else {
                 return new Number(subtraction(num2, num1), num1.radix, false);
             }
+            
+        // We have to add when the signs of the numbers differ
         } else if (!num1.isPositive() && num2.isPositive()) {
             return new Number(addition(num1, num2),num1.radix , false);
         } else if (num1.isPositive() && !num2.isPositive()) {
             return new Number(addition(num1, num2),num1.radix , true);
+            
+        // if both are negative
         } else {
             if (num1.thisBiggerThan(num2)) {
+                // if num1 is bigger than num2, then subtract as normal and stay negative
                 return new Number(subtraction(num1, num2),num1.radix , false);
             } else {
+                // else subtract num1 from num2 and change signs
                 return new Number(subtraction(num2, num1), num1.radix, true);
             }
         }
     }
     
+    /** Does the subtraction of num2 from num1
+     * 
+     * @param num1 The first number
+     * @param num2 The second number
+     * @return An int array containing the result of the subtraction
+     */
     int[] subtraction(Number num1, Number num2) {
-	convert(num1, num2);
+	// create result array
 	int[] result = new int[num1.value.length];
 	int base = num1.radix;
 	int carry = 0;
+        
+        // loop over all elements from back to front
 	for (int i = num1.value.length - 1; i >= 0; i--) {
+            // do the subtraction
             result[i] = num1.value[i] - num2.value[i] - carry;
+            
+            // Adjust to the correct base and change the carry
             if (result[i] < 0) {
                 result[i] = result[i] + base;
                 carry = 1;
