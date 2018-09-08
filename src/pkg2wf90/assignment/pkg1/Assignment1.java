@@ -19,7 +19,7 @@ public class Assignment1 {
     private void run(String[] args) throws FileNotFoundException{
         String file = System.getProperty("user.dir");
         
-        file = file + "\\example.txt";
+        file = file + "\\" + args[0];
         Scanner sc = new Scanner(new FileReader(file));
         Function func;
         

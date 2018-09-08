@@ -109,29 +109,13 @@ public class Number {
      * @return 
      */
     public boolean thisBiggerThan(Number other){
-        if(this.positive && !other.isPositive()){
-            return true;
-        } else if(!this.positive && other.isPositive()){
-            return false;
-        } else if(this.positive){
-            for(int i = 0; i < value.length; i++){
-                if(value[i] == other.getIntArr()[i]){
-                    
-                } else if (value[i] > other.getIntArr()[i]){
-                    return true;
-                } else{
-                    return false;
-                }
-            }
-        } else {
-            for(int i = 0; i < value.length; i++){
-                if(value[i] == other.getIntArr()[i]){
-                    
-                } else if (value[i] < other.getIntArr()[i]){
-                    return true;
-                } else{
-                    return false;
-                }
+        for(int i = 0; i < value.length; i++){
+            if(value[i] == other.getIntArr()[i]){
+                  
+            } else if (value[i] > other.getIntArr()[i]){
+                return true;
+            } else{
+                return false;
             }
         }
         return false;
