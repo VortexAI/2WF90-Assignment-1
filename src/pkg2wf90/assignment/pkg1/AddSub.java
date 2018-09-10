@@ -33,7 +33,7 @@ public class AddSub extends Function{
     Number add(Number num1, Number num2) {
         // If both are positive or both negative we add
 	if (num1.isPositive() && num2.isPositive() || !num1.isPositive() && !num2.isPositive()) {
-            return new Number(addition(num1, num2), num1.getRadix(), num1.isPositive());
+            return new Number(addition(num1.getIntArr(), num2.getIntArr(), num1.getRadix()), num1.getRadix(), num1.isPositive());
             
         // If one is negative, we subtract the negative from the positive
 	} else if (num1.isPositive() && !num2.isPositive()) {
@@ -51,20 +51,19 @@ public class AddSub extends Function{
      * @param num2 The second number
      * @return An int array containing the result of the addition
      */
-    int[] addition(Number num1, Number num2) {
+    int[] addition(int[] num1, int[] num2, int radix) {
         // create result array
-	int[] result = new int[num1.value.length + 1];
-	int base = num1.radix;
+	int[] result = new int[num1.length + 1];
 	int carry = 0;
         
         // loop over all elements from back to front
-	for (int i = num1.value.length - 1; i >= 0; i--) {
+	for (int i = num1.length - 1; i >= 0; i--) {
             // do the addition
-            result[i + 1] = num1.value[i] + num2.value[i] + carry;
+            result[i + 1] = num1[i] + num2[i] + carry;
             
             // change number to correct base if needed and adjust carry
-            if (result[i + 1] >= base) {
-                result[i + 1] = result[i + 1] - base;
+            if (result[i + 1] >= radix) {
+                result[i + 1] = result[i + 1] - radix;
                 carry = 1;
             } else {
                 carry = 0;
@@ -85,26 +84,26 @@ public class AddSub extends Function{
         if (num1.isPositive() && num2.isPositive()) {
             // if num1 is bigger than num2, then subtract as normal
             if (num1.thisBiggerThan(num2)) {
-                return new Number(subtraction(num1, num2),num1.radix , true);
+                return new Number(subtraction(num1.getIntArr(), num2.getIntArr(), num1.getRadix()), num1.getRadix(), true);
             // else subtract num1 from num2 and change the sign
             } else {
-                return new Number(subtraction(num2, num1), num1.radix, false);
+                return new Number(subtraction(num2.getIntArr(), num1.getIntArr(), num1.getRadix()), num1.getRadix(), false);
             }
             
         // We have to add when the signs of the numbers differ
         } else if (!num1.isPositive() && num2.isPositive()) {
-            return new Number(addition(num1, num2),num1.radix , false);
+            return new Number(addition(num1.getIntArr(), num2.getIntArr(), num1.getRadix()), num1.getRadix(), false);
         } else if (num1.isPositive() && !num2.isPositive()) {
-            return new Number(addition(num1, num2),num1.radix , true);
+            return new Number(addition(num1.getIntArr(), num2.getIntArr(), num1.getRadix()), num1.getRadix(), true);
             
         // if both are negative
         } else {
             if (num1.thisBiggerThan(num2)) {
                 // if num1 is bigger than num2, then subtract as normal and stay negative
-                return new Number(subtraction(num1, num2),num1.radix , false);
+                return new Number(subtraction(num1.getIntArr(), num2.getIntArr(), num1.getRadix()), num1.getRadix(), false);
             } else {
                 // else subtract num1 from num2 and change signs
-                return new Number(subtraction(num2, num1), num1.radix, true);
+                return new Number(subtraction(num2.getIntArr(), num1.getIntArr(), num1.getRadix()), num1.getRadix(), true);
             }
         }
     }
@@ -115,20 +114,19 @@ public class AddSub extends Function{
      * @param num2 The second number
      * @return An int array containing the result of the subtraction
      */
-    int[] subtraction(Number num1, Number num2) {
+    int[] subtraction(int[] num1, int[] num2, int radix) {
 	// create result array
-	int[] result = new int[num1.value.length];
-	int base = num1.radix;
+	int[] result = new int[num1.length];
 	int carry = 0;
         
         // loop over all elements from back to front
-	for (int i = num1.value.length - 1; i >= 0; i--) {
+	for (int i = num1.length - 1; i >= 0; i--) {
             // do the subtraction
-            result[i] = num1.value[i] - num2.value[i] - carry;
+            result[i] = num1[i] - num2[i] - carry;
             
             // Adjust to the correct base and change the carry
             if (result[i] < 0) {
-                result[i] = result[i] + base;
+                result[i] = result[i] + radix;
                 carry = 1;
             } else {
                 carry = 0;
