@@ -18,10 +18,10 @@ import java.util.Map;
 public class Number {
     private final char[] libInt = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     private static final Map<Character, Integer> libChar = new HashMap<Character, Integer>();
-    char[] number;
-    int[] value;
-    int radix;
-    boolean positive;
+    private char[] number;
+    private int[] value;
+    private int radix;
+    private boolean positive;
     
     static{
         libChar.put('0', 0);
@@ -122,19 +122,21 @@ public class Number {
     }
     
     public char[] getChars(){
-        return number;
+        return number.clone();
     }
     
     
     public int getRadix(){
-        return radix;
+        int b = radix;
+        return b;
     }
     
     public boolean isPositive(){
-        return positive;
+        boolean b = positive;
+        return b;
     }
     
     public int[] getIntArr(){
-        return value;
+        return value.clone();
     }
 }
