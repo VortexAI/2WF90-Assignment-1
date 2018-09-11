@@ -47,14 +47,17 @@ public class EzMult extends Function{
             carry = 0;
             for (int j = 0; j <= (reverseNum2.getIntArr().length - 1); j++) {
                 temp = result[i + j] + (reverseNum1.getIntArr()[i] * reverseNum2.getIntArr()[j]) + carry;
-                carry = Math.floorDiv(temp, base);
+                carry = temp/base;
                 result[i + j] = temp - (carry * base);
                 countAdd = countAdd + 3;
                 countMult = countMult + 2;
             }
             result[i + reverseNum2.getIntArr().length] = carry;
         }
-        return new Number(reverse(result), base, positive);
+        Number resultNumber = new Number(reverse(result), base, positive);
+        resultNumber.setCountMult(countMult);
+        resultNumber.setCountAdd(countAdd);
+        return resultNumber;
     }
     
     int[] reverse(int[] original) {
@@ -63,8 +66,6 @@ public class EzMult extends Function{
         
         for (int i = original.length - 1; i >= 0; i--) {
             tempIntArray[counter] = original[i];
-            //System.out.println(counter);
-            //System.out.println(tempIntArray[counter]);
             counter = counter + 1;
         }
         return tempIntArray;
