@@ -37,6 +37,7 @@ public class EzMult extends Function{
         int countAdd = 0;
         int countMult = 0;
         
+        // reverse the numbers to make the calculations with the int Array easier
         Number reverseNum1 = new Number(reverse(num1.getIntArr()), num1.getRadix(), num1.isPositive());
         Number reverseNum2 = new Number(reverse(num2.getIntArr()), num2.getRadix(), num2.isPositive());
         
@@ -45,21 +46,32 @@ public class EzMult extends Function{
         for (int i = 0; i <= (reverseNum1.getIntArr().length - 1); i++){
             // reset the carry
             carry = 0;
+            // loop over all elements back to front
             for (int j = 0; j <= (reverseNum2.getIntArr().length - 1); j++) {
+                // set the temp value to the current value of Z and add X times Y and add the carry
                 temp = result[i + j] + (reverseNum1.getIntArr()[i] * reverseNum2.getIntArr()[j]) + carry;
+                // the carry is the temp value divided by the base
                 carry = temp/base;
+                // the result is the temp value minus the carry times the base
                 result[i + j] = temp - (carry * base);
+                // add to the counter for add and mult how many they have done
                 countAdd = countAdd + 3;
                 countMult = countMult + 2;
             }
             result[i + reverseNum2.getIntArr().length] = carry;
         }
+        // Create a number number that will be returned as the result
         Number resultNumber = new Number(reverse(result), base, positive);
         resultNumber.setCountMult(countMult);
         resultNumber.setCountAdd(countAdd);
         return resultNumber;
     }
     
+    /** Reverse the Int Array
+     * 
+     * @param original the original Int Array
+     * @return the reversed Int Array
+     */
     int[] reverse(int[] original) {
         int[] tempIntArray = new int[original.length];
         int counter = 0;
