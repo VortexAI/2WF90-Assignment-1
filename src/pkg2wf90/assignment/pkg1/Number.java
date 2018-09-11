@@ -16,12 +16,16 @@ import java.util.Map;
  * @author s151810
  */
 public class Number {
-    private final char[] libInt = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    private static final Map<Character, Integer> libChar = new HashMap<Character, Integer>();
+    private final char[] libInt = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
+        '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private static final Map<Character, Integer> libChar = 
+            new HashMap<Character, Integer>();
     private char[] number;
     private int[] value;
     private int radix;
     private boolean positive;
+    private int countAdd;
+    private int countMult;
     
     static{
         libChar.put('0', 0);
@@ -138,5 +142,21 @@ public class Number {
     
     public int[] getIntArr(){
         return value.clone();
+    }
+    
+    public void setCountAdd(int i){
+        this.countAdd = i;
+    }
+    
+    public int getCountAdd(){
+        return this.countAdd;
+    }
+    
+    public void setCountMult(int i){
+        this.countMult = i;
+    }
+    
+    public int getCountMult(){
+        return this.countMult;
     }
 }
