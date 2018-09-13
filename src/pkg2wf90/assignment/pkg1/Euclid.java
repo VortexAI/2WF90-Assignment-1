@@ -14,29 +14,61 @@ public class Euclid extends Function{
     @Override
 
     Number run(Number a, Number b) {
-        return 
-    }
-    
-    int[] euclid(Number num1, Number num2) {
-        int[] result = new int[num1.value.length];
-               AddSub.addition(result, result, 1); 
-        int x1 = 1;
-        int x2 = 0;
-        int y1 = 0;
-        int y2 = 1;
-        int q;
-        int r;
-        Number zero = null;
-        zero.value = new int[num2.value.length];
-        while (num2.thisBiggerThan(zero)) {
-            q = division(num1, num2);
-            r = num1
-            
-        }
+        Number result = euclid(a, b);
         return result;
     }
     
-    int[] division(Number num1, Number num2) {
+    Number euclid(Number num1, Number num2) {
+        num1.stringToIntArr(num1.getChars().length);
+        num2.stringToIntArr(num2.getChars().length);
+        AddSub subtract = new AddSub(false);
+        EzMult mult = new EzMult();
+        int[] zeroArray = new int[num1.getIntArr().length];
+        int[] oneArray = new int[num1.getIntArr().length];
+        oneArray[0] = 1;
+        Number x1 = new Number(oneArray, num1.getRadix(), true);
+        Number x2 = new Number(zeroArray, num1.getRadix(), true);
+        Number y1 = new Number(zeroArray, num1.getRadix(), true);
+        Number y2 = new Number(oneArray, num1.getRadix(), true);
+        Number x3;
+        Number y3;
+        Number zero = new Number(zeroArray, num1.getRadix(), true);
+        Number neg = new Number(oneArray, num1.getRadix(), false);
+        Number q;
+        Number r;
+        while (num2.thisBiggerThan(zero)) {
+            q = division(num1, num2);
+            r = subtract.sub(num1, mult.mult(q, num2, true));
+            num1 = num2;
+            num2 = r;
+            x3 = subtract.sub(x1, mult.mult(q, x2, true));
+            y3 = subtract.sub(y1, mult.mult(q, y2, true));
+            x1 = x2;
+            y1 = y2;
+            x2 = x3;
+            y2 = y3;           
+            
+        }
+        Number d;
+        d = num1;
+        Number x;
+        Number y;
+        if (num1.thisBiggerThan(neg)) {
+            x = x1;
+        } else {
+            x1.flip();
+            x = x1;
+        }
+        if (num2.thisBiggerThan(neg)) {
+            y = y1;
+        } else {
+            y1.flip();
+            y = y1;
+        }
+        return d;
+    }
+    
+    Number division(Number num1, Number num2) {
         int[] a = new int[] {3,2}; 
         int[] b = new int[] {1,9}; 
         int k = a.length;
@@ -81,13 +113,11 @@ public class Euclid extends Function{
         for(int i = r.length-1; i >= 0; i--) {
             System.out.println(r[i]);
         }
-        return  q;
+        Number result = new Number(q, num1.getRadix(), true);
+        return  result;
     }
     
     
-    public static void main(String[] args) {
-        test();
-    }
 }
 
 
