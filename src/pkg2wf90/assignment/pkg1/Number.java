@@ -29,6 +29,7 @@ public class Number {
     private int d;
     private int a;
     private int b;
+    private int[] m;
     
     static{
         libChar.put('0', 0);
@@ -76,6 +77,22 @@ public class Number {
         }
         this.value = result;
     }
+    
+    public int[] stringToIntArrLoc(String m){
+        int index = 0;
+        if(!positive){
+            index = 1;
+        }
+        int[] result = new int[m.length()];
+        for(int i : result){
+            i = 0;
+        }
+        for(int i = m.length()-1; i >= m.length()- number.length + index; i--){
+            result[i] = libChar.get(m.toCharArray()[i-(m.length()-number.length)]);
+        }
+        return result;
+    }
+    
     
     public char[] intToStringArr(int[] a){
         
@@ -185,5 +202,13 @@ public class Number {
     
     public int getD(){
         return d;
+    }
+    
+    public void setM(String m){
+        this.m = stringToIntArrLoc(m);
+    }
+    
+    public int[] getM(){
+        return m;
     }
 }
