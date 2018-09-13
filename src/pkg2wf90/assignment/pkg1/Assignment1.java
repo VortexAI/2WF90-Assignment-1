@@ -5,10 +5,12 @@
  */
 package pkg2wf90.assignment.pkg1;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -16,15 +18,18 @@ import java.util.ArrayList;
  */
 public class Assignment1 {
 
-    private void run(String[] args) throws FileNotFoundException{
+    private void run(String[] args) throws FileNotFoundException, IOException{
         String file = System.getProperty("user.dir");
         
         file = file + "\\" + args[0];
-        Scanner sc = new Scanner(new FileReader(file));
+        BufferedReader sc = new BufferedReader(new FileReader(file));
         Function func;
+        FileWriter fw = new FileWriter("output");
+        BufferedWriter br = new BufferedWriter(fw);
         
-        while(sc.hasNext()){
-            String a = sc.nextLine();
+        while(sc.ready()){
+            String a = sc.readLine();
+            sc.
             if(a.startsWith("[radix]")){ 
                 Number num3;
                 int radix = Integer.parseInt(a.split(" ")[a.split(" ").length-1]);
@@ -55,11 +60,21 @@ public class Assignment1 {
                     System.out.print(d);
                 }
                 System.out.print("\n");
+                if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
+                    System.out.println("[count-add] " + num3.getCountAdd());
+                    System.out.println("[count-mul] " + num3.getCountMult());
+                }
+                
+                if(func.getClass() == Euclid.class){
+                    System.out.println("[answer-d] " + num3.getD());
+                    System.out.println("[answer-a] " + num3.getA());
+                    System.out.println("[answer-b] " + num3.getB());
+                }
             } 
         }
     }
     
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         Assignment1 a = new Assignment1();
         a.run(args);
     }

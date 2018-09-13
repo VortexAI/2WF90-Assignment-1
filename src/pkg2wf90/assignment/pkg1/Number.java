@@ -26,6 +26,9 @@ public class Number {
     private boolean positive;
     private int countAdd;
     private int countMult;
+    private int d;
+    private int a;
+    private int b;
     
     static{
         libChar.put('0', 0);
@@ -158,5 +161,29 @@ public class Number {
     
     public int getCountMult(){
         return this.countMult;
+    }
+    
+    public void setA(int a){
+        this.a = a;
+    } 
+    
+    public void setB(int b){
+        this.b = b;
+    }
+    
+    public void setD(int d){
+        this.d = d;
+    }
+    
+    public int getA(){
+        return a;
+    }
+    
+    public int getB(){
+        return b;
+    }
+    
+    public int getD(){
+        return d;
     }
 }
