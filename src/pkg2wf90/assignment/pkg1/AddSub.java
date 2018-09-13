@@ -16,7 +16,7 @@ public class AddSub extends Function{
      */
     @Override
     Number run(Number num1, Number num2) {
-        convert(num1, num2);
+        
         if(add) {
             return add(num1, num2);
         } else {
@@ -31,6 +31,8 @@ public class AddSub extends Function{
      * @return The result of adding both numbers
      */
     Number add(Number num1, Number num2) {
+        convert(num1, num2);
+        
         // If both are positive or both negative we add
 	if (num1.isPositive() && num2.isPositive() || !num1.isPositive() && !num2.isPositive()) {
             return new Number(addition(num1.getIntArr(), num2.getIntArr(), num1.getRadix()), num1.getRadix(), num1.isPositive());
@@ -80,6 +82,8 @@ public class AddSub extends Function{
      * @return The result of subtracting num2 from num1
      */
     Number sub(Number num1, Number num2) {
+        convert(num1, num2);
+        
         // if both are positive
         if (num1.isPositive() && num2.isPositive()) {
             // if num1 is bigger than num2, then subtract as normal
