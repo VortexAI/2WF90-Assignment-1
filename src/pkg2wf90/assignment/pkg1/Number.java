@@ -72,6 +72,7 @@ public class Number {
         for(int i : result){
             i = 0;
         }
+        
         for(int i = l-1; i >= l- number.length + index; i--){
             result[i] = libChar.get(number[i-(l-number.length)]);
         }
