@@ -12,8 +12,9 @@ package pkg2wf90.assignment.pkg1;
 public class Euclid extends Function{
 
     @Override
-    void run(Number a, Number b) {
-        
+
+    Number run(Number a, Number b) {
+        return 
     }
     
     int[] euclid(Number num1, Number num2) {

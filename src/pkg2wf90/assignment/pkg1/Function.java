@@ -11,17 +11,24 @@ package pkg2wf90.assignment.pkg1;
  */
 abstract public class Function {
     
+    
+    /**
+     * Method that takes two numbers and produces their integer value array
+     * of equal length
+     * @param a number to be converted
+     * @param b number to be converted
+     */
     public void convert(Number a, Number b){
         if(a.getChars().length > b.getChars().length){
             int length = a.getChars().length;
             a.stringToIntArr(length);
             b.stringToIntArr(length);
         } else {
-            int length = a.getChars().length;
+            int length = b.getChars().length;
             a.stringToIntArr(length);
             b.stringToIntArr(length);
         }
     }
     
-    abstract void run(Number a, Number b);
+    abstract Number run(Number a, Number b);
 }
