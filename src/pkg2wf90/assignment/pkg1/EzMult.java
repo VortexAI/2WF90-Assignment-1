@@ -30,7 +30,7 @@ public class EzMult extends Function{
      */
     Number mult(Number num1, Number num2, boolean positive) {
         // create the result array
-        int[] result = new int[2 * num1.getIntArr().length];
+        int[] result = new int[num1.getIntArr().length + num2.getIntArr().length];
         int base = num1.getRadix();
         int carry = 0;
         int temp = 0;
