@@ -41,7 +41,7 @@ public class Assignment1 {
                 br.write(Assignment + System.getProperty("line.separator"));
                 a = sc.readLine();
                 br.write(a + System.getProperty("line.separator"));
-                while(a != System.getProperty("line.separator")){
+                while(a.equals(System.getProperty("line.separator"))){
                     
                     if(a.startsWith("[x]")){
                         String[] xl = a.split(" ");
@@ -78,6 +78,7 @@ public class Assignment1 {
                 for(char d: num3.getChars()){
                     br.write(d);
                 }
+                
                 br.write(System.getProperty("line.separator"));
                 System.out.print("\n");
                 if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
