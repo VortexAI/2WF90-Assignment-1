@@ -134,16 +134,21 @@ public class Number {
      * @return 
      */
     public boolean thisBiggerThan(Number other){
+        int[] otherArray = other.getIntArr();
         for(int i = 0; i < value.length; i++){
-            if(value[i] == other.getIntArr()[i]){
+            if(value[i] == otherArray[i]){
                   
-            } else if (value[i] > other.getIntArr()[i]){
+            } else if (value[i] > otherArray[i]){
                 return true;
             } else{
                 return false;
             }
         }
         return false;
+    }
+    
+    public int getLength(){
+        return value.length;
     }
     
     public char[] getChars(){
