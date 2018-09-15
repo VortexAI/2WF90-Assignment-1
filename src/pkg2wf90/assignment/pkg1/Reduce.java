@@ -18,9 +18,9 @@ public class Reduce extends Function {
         int base = x.getRadix();
         EzMult mult = new EzMult();
         AddSub addSub = new AddSub(true);
-        for (int i = x.getLength() - m.getLength(); i <= 0; i--) {
+        for (int i = x.getLength() - m.getLength(); i >= 0; i--) {
             Number mBase = mult.run(m, power(base, i));
-            while (!mBase.thisBiggerThan(x)) {
+            while (isBiggerEqualThan(x, mBase)) {
                 x = addSub.sub(x, mBase);
             }
         }
@@ -31,7 +31,24 @@ public class Reduce extends Function {
         
     }
     
-    Number power (int base, int power) {
+    public boolean isBiggerEqualThan(Number a, Number b){
+        convert(a, b);
+        int[] arrayA = a.getIntArr();
+        int[] arrayB = b.getIntArr();
+        for(int i = 0; i < arrayA.length; i++){
+            if(arrayA[i] == arrayB[i]) {
+
+            } else if (arrayA[i] > arrayB[i]){
+                return true;
+            } else{
+                return false;
+            }
+        }
+        return true;
+        
+    }
+    
+    Number power(int base, int power) {
         int[] array = new int[power + 1];
         array[0] = 1;
         return new Number(array, base, true);
