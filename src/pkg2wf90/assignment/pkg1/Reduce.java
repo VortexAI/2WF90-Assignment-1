@@ -12,7 +12,7 @@ package pkg2wf90.assignment.pkg1;
 public class Reduce extends Function {
 
     @Override
-    Number run(Number x, Number m, Number numM) {
+    Number run(Number x, Number y, Number m) {
         boolean positive = x.isPositive();
         if (!positive) {
             x.flip();
@@ -23,7 +23,7 @@ public class Reduce extends Function {
         EzMult mult = new EzMult();
         AddSub addSub = new AddSub(true);
         for (int i = x.getLength() - m.getLength(); i >= 0; i--) {
-            Number mBase = mult.run(m, power(base, i));
+            Number mBase = mult.run(m, power(base, i), null);
             while (isBiggerEqualThan(x, mBase)) {
                 x = addSub.sub(x, mBase);
             }

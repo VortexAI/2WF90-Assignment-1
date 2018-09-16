@@ -65,12 +65,13 @@ public class Euclid extends Function{
             y1.flip();
             y = y1;
         }
+        d.intToStringArr(d.getIntArr());
         return d;
     }
     
     Number division(Number num1, Number num2) {
-        int[] a = new int[] {3,2}; 
-        int[] b = new int[] {1,9}; 
+        int[] a = num1.getIntArr();
+        int[] b = num2.getIntArr();
         int k = a.length;
         int l = b.length;
         int[] r = new int[k+1];
@@ -93,6 +94,9 @@ public class Euclid extends Function{
                 tmp = r[r.length-1 - (i+j)] - q[q.length-1 - i]*b[b.length-1 - j] + carry;
                 carry = tmp/base;
                 r[r.length-1 - (i+j)] = tmp%base; 
+                if (r[r.length-1 - (i+j)] < 0) {
+                    r[r.length-1 - (i+j)] += base;
+                }
             }
             
             r[r.length-1 - (i+l)] = r[r.length-1 - (i+l)] + carry;
@@ -102,13 +106,16 @@ public class Euclid extends Function{
                     tmp = r[r.length-1 - (i+j)] + b[b.length-1 - i] + carry;
                     carry = tmp/base;
                     r[r.length-1 - (i+j)] = tmp%base; 
+                    if (r[r.length-1 - (i+j)] < 0) {
+                        r[r.length-1 - (i+j)] += base;
+                    }
                 }
                 r[r.length-1 - (i+l)] = r[r.length-1 - (i+l)] + carry;
                 q[q.length-1 - i] = q[q.length-1 - i] - 1;
             }
         }
         for(int i = q.length-1; i>=0; i--) {
-        System.out.println(q[i]);
+            System.out.println("q: " + q[i]);
 	}
         for(int i = r.length-1; i >= 0; i--) {
             System.out.println(r[i]);

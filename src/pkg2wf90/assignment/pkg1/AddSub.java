@@ -15,13 +15,19 @@ public class AddSub extends Function{
      * @return the result of the addition/subtraction
      */
     @Override
-    Number run(Number num1, Number num2, Number numM) {
+    Number run(Number num1, Number num2, Number m) {
         
+        Number ans = null;
         if(add) {
-            return add(num1, num2);
+            ans = add(num1, num2);
         } else {
-            return sub(num1, num2);
+            ans = sub(num1, num2);
         }
+        if (m != null) {
+            Reduce reduction = new Reduce();
+            ans = reduction.run(ans, null, m);
+        }
+        return ans;
     }
     
     /** Does a case distinction on given numbers for addition
