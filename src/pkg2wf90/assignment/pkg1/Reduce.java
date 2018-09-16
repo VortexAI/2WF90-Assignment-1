@@ -17,7 +17,12 @@ public class Reduce extends Function {
         if (!positive) {
             x.flip();
         }
-        x.stringToIntArr(x.getChars().length);
+        System.out.println("x reduce: " + x.getChars().toString());
+        //if((x.getChars().length != (x.getIntArr().length)) && x.isPositive()){
+            x.stringToIntArr(x.getChars().length);
+     //   } else if ((x.getChars().length != (x.getIntArr().length + 1))){
+            x.stringToIntArr(x.getChars().length);
+       // }
         m.stringToIntArr(m.getChars().length);
         int base = x.getRadix();
         EzMult mult = new EzMult();

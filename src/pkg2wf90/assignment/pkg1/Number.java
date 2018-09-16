@@ -69,7 +69,9 @@ public class Number {
     
     public void stringToIntArr(int l){
         int index = 0;
-        
+        if(number[0] == '-'){
+            index = 1;
+        }
         int[] result = new int[l];
         for(int i : result){
             i = 0;

@@ -94,9 +94,14 @@ public class Assignment1 {
                     numM = new Number(m, radix, !m.startsWith("-"));
                 }
                 
-                
-                try {
+                System.out.println("x: " + x);
+                if(y != null){
+                    System.out.println("y: " + y);
+                }
+                System.out.println("x length: " + x.length());
+                //try {
                     num3 = func.run(num1, num2, numM);
+                    System.out.println("num3 length: " + num3.getChars().length);
                     br.write("[answer] ");
                     for(char d: num3.getChars()){
                         br.write(d);
@@ -113,9 +118,9 @@ public class Assignment1 {
                         br.write("[answer-a] " + num3.getA());
                         br.write("[answer-b] " + num3.getB());
                     }
-                } catch (Exception e) {
-                    br.write("exception " + e + " thrown");
-                } 
+                //} catch (Exception e) {
+                //    br.write("exception " + e + " thrown");
+                //} 
                     
 
                 br.write(System.getProperty("line.separator"));
