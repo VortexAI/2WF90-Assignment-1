@@ -23,7 +23,7 @@ public class Reduce extends Function {
         EzMult mult = new EzMult();
         AddSub addSub = new AddSub(true);
         for (int i = x.getLength() - m.getLength(); i >= 0; i--) {
-            Number mBase = mult.run(m, power(base, i));
+            Number mBase = mult.run(m, power(base, i), null);
             while (isBiggerEqualThan(x, mBase)) {
                 x = addSub.sub(x, mBase);
             }
