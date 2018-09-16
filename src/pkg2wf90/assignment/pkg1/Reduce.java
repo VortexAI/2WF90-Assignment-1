@@ -12,7 +12,7 @@ package pkg2wf90.assignment.pkg1;
 public class Reduce extends Function {
 
     @Override
-    Number run(Number x, Number m, Number numM) {
+    Number run(Number x, Number y, Number m) {
         boolean positive = x.isPositive();
         if (!positive) {
             x.flip();

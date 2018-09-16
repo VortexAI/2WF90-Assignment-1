@@ -15,7 +15,7 @@ public class AddSub extends Function{
      * @return the result of the addition/subtraction
      */
     @Override
-    Number run(Number num1, Number num2, Number numM) {
+    Number run(Number num1, Number num2, Number m) {
         
         Number ans = null;
         if(add) {
@@ -23,9 +23,9 @@ public class AddSub extends Function{
         } else {
             ans = sub(num1, num2);
         }
-        if (numM != null) {
+        if (m != null) {
             Reduce reduction = new Reduce();
-            ans = reduction.run(ans, numM, null);
+            ans = reduction.run(ans, null, m);
         }
         return ans;
     }

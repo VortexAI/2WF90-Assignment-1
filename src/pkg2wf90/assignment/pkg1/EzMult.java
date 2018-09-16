@@ -25,7 +25,7 @@ public class EzMult extends Function{
         }
         if (m != null) {
             Reduce reduction = new Reduce();
-            ans = reduction.run(ans, m, null);
+            ans = reduction.run(ans, null, m);
         }
         return ans;
     }
