@@ -13,7 +13,7 @@ public class Euclid extends Function{
 
     @Override
 
-    Number run(Number a, Number b) {
+    Number run(Number a, Number b, Number m) {
         Number result = euclid(a, b);
         return result;
     }

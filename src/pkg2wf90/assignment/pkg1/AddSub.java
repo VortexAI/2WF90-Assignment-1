@@ -15,7 +15,7 @@ public class AddSub extends Function{
      * @return the result of the addition/subtraction
      */
     @Override
-    Number run(Number num1, Number num2) {
+    Number run(Number num1, Number num2, Number numM) {
         
         if(add) {
             return add(num1, num2);
