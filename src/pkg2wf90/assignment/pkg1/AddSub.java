@@ -17,11 +17,17 @@ public class AddSub extends Function{
     @Override
     Number run(Number num1, Number num2, Number numM) {
         
+        Number ans = null;
         if(add) {
-            return add(num1, num2);
+            ans = add(num1, num2);
         } else {
-            return sub(num1, num2);
+            ans = sub(num1, num2);
         }
+        if (numM != null) {
+            Reduce reduction = new Reduce();
+            ans = reduction.run(ans, numM, null);
+        }
+        return ans;
     }
     
     /** Does a case distinction on given numbers for addition
