@@ -27,7 +27,10 @@ public class EzMult extends Function{
         }
         if (m != null) {
             Reduce reduction = new Reduce();
-            ans = reduction.run(ans, null, m);
+            Number ans2 = reduction.run(ans, null, m);
+            ans2.setCountAdd(ans.getCountAdd());
+            ans2.setCountMult(ans.getCountMult());
+            ans = ans2;
         }
         return ans;
     }
