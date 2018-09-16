@@ -47,10 +47,11 @@ public class AddSub extends Function{
 	}
     }
     
-    /** Does the addition of two numbers
+    /** Does the addition of two int arrays
      * 
-     * @param num1 The first number
-     * @param num2 The second number
+     * @param num1 The first number in an int array
+     * @param num2 The second number in an int array
+     * @param radix The radix
      * @return An int array containing the result of the addition
      */
     int[] addition(int[] num1, int[] num2, int radix) {
@@ -112,10 +113,11 @@ public class AddSub extends Function{
         }
     }
     
-    /** Does the subtraction of num2 from num1
+    /** Does the subtraction of two int arrays
      * 
-     * @param num1 The first number
-     * @param num2 The second number
+     * @param num1 The first number in an int array
+     * @param num2 The second number in an int array
+     * @param radix The radix
      * @return An int array containing the result of the subtraction
      */
     int[] subtraction(int[] num1, int[] num2, int radix) {
