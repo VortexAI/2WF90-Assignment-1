@@ -13,6 +13,10 @@ public class Reduce extends Function {
 
     @Override
     Number run(Number x, Number m) {
+        boolean positive = x.isPositive();
+        if (!positive) {
+            x.flip();
+        }
         x.stringToIntArr(x.getChars().length);
         m.stringToIntArr(m.getChars().length);
         int base = x.getRadix();
@@ -24,7 +28,7 @@ public class Reduce extends Function {
                 x = addSub.sub(x, mBase);
             }
         }
-        if (!x.isPositive()) {
+        if (!positive) {
             x = addSub.sub(m, x);
         }
         return x;
