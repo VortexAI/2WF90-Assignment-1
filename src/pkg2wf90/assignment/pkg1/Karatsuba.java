@@ -18,7 +18,7 @@ public class Karatsuba extends Function{
     AddSub sub = new AddSub(false);
     
     @Override
-    Number run(Number a, Number b) {
+    Number run(Number a, Number b, Number m) {
         return Karat(a, b);
     }
     
@@ -30,7 +30,7 @@ public class Karatsuba extends Function{
         //If either of the nubmers has a size less than 2, start recursing back
         if(aSize < 2 || bSize < 2){
             multCount++;
-            return mult.run(a,b);
+            return mult.run(a,b,null);
         }
         
         //Make sure both numbers are of equal size
@@ -59,8 +59,8 @@ public class Karatsuba extends Function{
         Number bN = new Number(makeShiftArray(radix, size/2), radix, true);
         Number bNhalf = new Number(makeShiftArray(radix, size/4), radix, true);
         
-        Number SecondTerm = sub.run(sub.run(Karat(add.run(x_hi, x_lo), add.run(y_lo, y_lo)),xy_hi),xy_lo);
-        Number xy = add.run(add.run(Karat(xy_hi, bN), Karat(SecondTerm, bNhalf)),xy_lo);
+        Number SecondTerm = sub.run(sub.run(Karat(add.run(x_hi, x_lo, null), add.run(y_lo, y_lo, null)),xy_hi, null),xy_lo, null);
+        Number xy = add.run(add.run(Karat(xy_hi, bN), Karat(SecondTerm, bNhalf), null),xy_lo, null);
         
         addSubCount += 6;
         xy.setCountMult(multCount);
