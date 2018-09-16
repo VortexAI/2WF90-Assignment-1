@@ -95,9 +95,10 @@ public class Assignment1 {
                     numM = new Number(m, radix, !m.startsWith("-"));
                 }
                 
-                num3 = func.run(num1, num2, numM);
+                
                 
                 try {
+                    num3 = func.run(num1, num2, numM);
                     br.write("[answer] ");
                     for(char d: num3.getChars()){
                         br.write(d);
