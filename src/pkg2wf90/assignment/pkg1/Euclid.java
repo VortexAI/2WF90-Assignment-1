@@ -37,10 +37,13 @@ public class Euclid extends Function{
         Number q;
         Number r;
         while (num2.thisBiggerThan(zero)) {
+            System.out.println("loop");
             q = division(num1, num2);
             r = subtract.sub(num1, mult.mult(q, num2, true));
+            r = removeZeros(r);
             num1 = num2;
             num2 = r;
+            System.out.println(num2.getIntArr()[0]);
             x3 = subtract.sub(x1, mult.mult(q, x2, true));
             y3 = subtract.sub(y1, mult.mult(q, y2, true));
             x1 = x2;
@@ -80,7 +83,7 @@ public class Euclid extends Function{
         }
         r[0] = 0;
         int[] q = new int[k-l + 1];
-        int base = 16;
+        int base = num1.getRadix();
         int carry;
         int tmp;
         
@@ -118,10 +121,28 @@ public class Euclid extends Function{
             System.out.println("q: " + q[i]);
 	}
         for(int i = r.length-1; i >= 0; i--) {
-            System.out.println(r[i]);
+            System.out.println("r: " + r[i]);
         }
         Number result = new Number(q, num1.getRadix(), true);
         return  result;
+    }
+    
+    Number removeZeros(Number num) {
+        int i = 0;
+        int[] newArr;
+        while((i < num.getIntArr().length) && (num.getIntArr()[i] == 0)) {
+            i++;
+        }
+        if (i == num.getIntArr().length) {
+            newArr = new int [1];
+            newArr[0] = 0;
+        } else {
+            newArr = new int [num.getIntArr().length - i];
+            for(int j = newArr.length - 1; j >= 0; j--) {
+                newArr[j] = num.getIntArr() [j+i];
+            }
+        }
+        return new Number(newArr, num.getRadix(), num.isPositive());
     }
     
     
