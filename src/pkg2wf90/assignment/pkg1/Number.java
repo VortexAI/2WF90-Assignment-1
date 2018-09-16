@@ -51,7 +51,11 @@ public class Number {
     }
     
     Number(String number, int radix, boolean positive){
-        this.number = number.toCharArray();
+        if(positive){
+            this.number = number.toCharArray();
+        } else {
+            this.number = number.split("-")[number.split("-").length-1].toCharArray();
+        }
         this.radix = radix;
         this.positive = positive;
     }
@@ -65,9 +69,7 @@ public class Number {
     
     public void stringToIntArr(int l){
         int index = 0;
-        if(!positive){
-            index = 1;
-        }
+        
         int[] result = new int[l];
         for(int i : result){
             i = 0;

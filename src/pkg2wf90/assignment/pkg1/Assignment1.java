@@ -42,7 +42,6 @@ public class Assignment1 {
                 br.write(Assignment + System.getProperty("line.separator"));
                 a = sc.nextLine();
                 while(!sc.hasNext() || !a.trim().isEmpty()){
-                    
                     if(a.startsWith("[x]")){
                         String[] xl = a.split(" ");
                         x = xl[xl.length-1];
@@ -96,7 +95,6 @@ public class Assignment1 {
                 }
                 
                 
-                
                 try {
                     num3 = func.run(num1, num2, numM);
                     br.write("[answer] ");
@@ -105,7 +103,6 @@ public class Assignment1 {
                     }
                 
                     br.write(System.getProperty("line.separator"));
-                    System.out.print("\n");
                     if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
                         br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
                         br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
@@ -116,10 +113,11 @@ public class Assignment1 {
                         br.write("[answer-a] " + num3.getA());
                         br.write("[answer-b] " + num3.getB());
                     }
-                    
                 } catch (Exception e) {
-                    br.write("error " + e + "was caught");
-                }
+                    br.write("exception " + e + " thrown");
+                } 
+                    
+
                 br.write(System.getProperty("line.separator"));
             } 
         }
