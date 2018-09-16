@@ -26,9 +26,9 @@ public class Number {
     private boolean positive;
     private int countAdd;
     private int countMult;
-    private int d;
-    private int a;
-    private int b;
+    private Number d;
+    private Number a;
+    private Number b;
     private int[] m = null;
     
     static{
@@ -188,27 +188,27 @@ public class Number {
         return this.countMult;
     }
     
-    public void setA(int a){
+    public void setA(Number a){
         this.a = a;
     } 
     
-    public void setB(int b){
+    public void setB(Number b){
         this.b = b;
     }
     
-    public void setD(int d){
+    public void setD(Number d){
         this.d = d;
     }
     
-    public int getA(){
+    public Number getA(){
         return a;
     }
     
-    public int getB(){
+    public Number getB(){
         return b;
     }
     
-    public int getD(){
+    public Number getD(){
         return d;
     }
     
