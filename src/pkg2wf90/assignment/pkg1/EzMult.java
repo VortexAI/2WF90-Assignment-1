@@ -13,6 +13,8 @@ public class EzMult extends Function{
      * @return The result of multiplying both numbers
      */
     @Override
+
+
     Number run(Number num1, Number num2, Number m) {
         convert(num1, num2);
         

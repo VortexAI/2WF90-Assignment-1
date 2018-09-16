@@ -95,24 +95,30 @@ public class Assignment1 {
                     numM = new Number(m, radix, !m.startsWith("-"));
                 }
                 
-                num3 = func.run(num1, num2, numM);
                 
-                br.write("[answer] ");
-                for(char d: num3.getChars()){
-                    br.write(d);
-                }
                 
-                br.write(System.getProperty("line.separator"));
-                System.out.print("\n");
-                if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
-                    br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
-                    br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
-                }
+                try {
+                    num3 = func.run(num1, num2, numM);
+                    br.write("[answer] ");
+                    for(char d: num3.getChars()){
+                        br.write(d);
+                    }
                 
-                if(func.getClass() == Euclid.class){
-                    br.write("[answer-d] " + num3.getD());
-                    br.write("[answer-a] " + num3.getA());
-                    br.write("[answer-b] " + num3.getB());
+                    br.write(System.getProperty("line.separator"));
+                    System.out.print("\n");
+                    if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
+                        br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
+                        br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
+                    }
+                
+                    if(func.getClass() == Euclid.class){
+                        br.write("[answer-d] " + num3.getD());
+                        br.write("[answer-a] " + num3.getA());
+                        br.write("[answer-b] " + num3.getB());
+                    }
+                    
+                } catch (Exception e) {
+                    br.write("error " + e + "was caught");
                 }
                 br.write(System.getProperty("line.separator"));
             } 
