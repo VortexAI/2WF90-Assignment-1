@@ -29,7 +29,7 @@ public class Number {
     private int d;
     private int a;
     private int b;
-    private int[] m;
+    private int[] m = null;
     
     static{
         libChar.put('0', 0);
@@ -72,6 +72,7 @@ public class Number {
         for(int i : result){
             i = 0;
         }
+        
         for(int i = l-1; i >= l- number.length + index; i--){
             result[i] = libChar.get(number[i-(l-number.length)]);
         }
@@ -84,9 +85,7 @@ public class Number {
             index = 1;
         }
         int[] result = new int[m.length()];
-        for(int i : result){
-            i = 0;
-        }
+        
         for(int i = m.length()-1; i >= m.length()- number.length + index; i--){
             result[i] = libChar.get(m.toCharArray()[i-(m.length()-number.length)]);
         }
@@ -133,16 +132,21 @@ public class Number {
      * @return 
      */
     public boolean thisBiggerThan(Number other){
+        int[] otherArray = other.getIntArr();
         for(int i = 0; i < value.length; i++){
-            if(value[i] == other.getIntArr()[i]){
+            if(value[i] == otherArray[i]){
                   
-            } else if (value[i] > other.getIntArr()[i]){
+            } else if (value[i] > otherArray[i]){
                 return true;
             } else{
                 return false;
             }
         }
         return false;
+    }
+    
+    public int getLength(){
+        return value.length;
     }
     
     public char[] getChars(){

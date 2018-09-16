@@ -15,13 +15,19 @@ public class AddSub extends Function{
      * @return the result of the addition/subtraction
      */
     @Override
-    Number run(Number num1, Number num2) {
+    Number run(Number num1, Number num2, Number m) {
         
+        Number ans = null;
         if(add) {
-            return add(num1, num2);
+            ans = add(num1, num2);
         } else {
-            return sub(num1, num2);
+            ans = sub(num1, num2);
         }
+        if (m != null) {
+            Reduce reduction = new Reduce();
+            ans = reduction.run(ans, null, m);
+        }
+        return ans;
     }
     
     /** Does a case distinction on given numbers for addition
@@ -47,10 +53,11 @@ public class AddSub extends Function{
 	}
     }
     
-    /** Does the addition of two numbers
+    /** Does the addition of two int arrays
      * 
-     * @param num1 The first number
-     * @param num2 The second number
+     * @param num1 The first number in an int array
+     * @param num2 The second number in an int array
+     * @param radix The radix
      * @return An int array containing the result of the addition
      */
     int[] addition(int[] num1, int[] num2, int radix) {
@@ -112,10 +119,11 @@ public class AddSub extends Function{
         }
     }
     
-    /** Does the subtraction of num2 from num1
+    /** Does the subtraction of two int arrays
      * 
-     * @param num1 The first number
-     * @param num2 The second number
+     * @param num1 The first number in an int array
+     * @param num2 The second number in an int array
+     * @param radix The radix
      * @return An int array containing the result of the subtraction
      */
     int[] subtraction(int[] num1, int[] num2, int radix) {

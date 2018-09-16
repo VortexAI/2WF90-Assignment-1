@@ -13,14 +13,21 @@ public class EzMult extends Function{
      * @return The result of multiplying both numbers
      */
     @Override
-    Number run(Number num1, Number num2) {
+    Number run(Number num1, Number num2, Number m) {
         convert(num1, num2);
+        
+        Number ans = null;
         // If both numbers are negative or positive the answer will be positive
         if (num1.isPositive() == num2.isPositive()) {
-            return mult(num1, num2, true);
+            ans = mult(num1, num2, true);
         } else {
-            return mult(num1, num2, false);
+            ans = mult(num1, num2, false);
         }
+        if (m != null) {
+            Reduce reduction = new Reduce();
+            ans = reduction.run(ans, null, m);
+        }
+        return ans;
     }
     /** Does the multiplication of two numbers
      * 
