@@ -13,7 +13,7 @@ public class EzMult extends Function{
      * @return The result of multiplying both numbers
      */
     @Override
-    Number run(Number num1, Number num2) {
+    Number run(Number num1, Number num2, Number numM) {
         convert(num1, num2);
         // If both numbers are negative or positive the answer will be positive
         if (num1.isPositive() == num2.isPositive()) {
