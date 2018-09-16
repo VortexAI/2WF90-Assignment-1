@@ -30,5 +30,5 @@ abstract public class Function {
         }
     }
     
-    abstract Number run(Number a, Number b);
+    abstract Number run(Number a, Number b, Number m);
 }

@@ -29,7 +29,7 @@ public class Number {
     private int d;
     private int a;
     private int b;
-    private int[] m;
+    private int[] m = null;
     
     static{
         libChar.put('0', 0);

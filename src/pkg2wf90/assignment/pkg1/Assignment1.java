@@ -84,13 +84,18 @@ public class Assignment1 {
                     func = new Euclid();
                 }
                 Number num1 = new Number(x, radix, !x.startsWith("-"));
-                Number num2 = new Number(y, radix, !y.startsWith("-"));
-                num3 = func.run(num1, num2);
+                Number num2 = null;
+                Number numM = null;
+                if (y != null){
+                    num2 = new Number(y, radix, !y.startsWith("-"));
+                }
+                
                 
                 if (m != null){
-                    num1.setM(m);
-                    num2.setM(m);
+                    numM = new Number(m, radix, !m.startsWith("-"));
                 }
+                
+                num3 = func.run(num1, num2, numM);
                 
                 br.write("[answer] ");
                 for(char d: num3.getChars()){
