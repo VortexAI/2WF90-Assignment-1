@@ -85,9 +85,7 @@ public class Number {
             index = 1;
         }
         int[] result = new int[m.length()];
-        for(int i : result){
-            i = 0;
-        }
+        
         for(int i = m.length()-1; i >= m.length()- number.length + index; i--){
             result[i] = libChar.get(m.toCharArray()[i-(m.length()-number.length)]);
         }

@@ -65,6 +65,9 @@ public class Assignment1 {
                         break;
                     }
                 }
+                
+                
+                
                 if(Assignment.equals("[add]")){
                     func = new AddSub(true);    
                 } else if(Assignment.equals("[subtract]")){
@@ -73,12 +76,21 @@ public class Assignment1 {
                     func = new EzMult();
                 } else if(Assignment.equals("[karatsuba]")){
                     func = new Karatsuba();
+                } else if(Assignment.equals("[reduce]")) {
+                    func = new Reduce();
+                } else if(Assignment.equals("[invert]")){
+                    func = new Invert();
                 } else {
                     func = new Euclid();
                 }
                 Number num1 = new Number(x, radix, !x.startsWith("-"));
                 Number num2 = new Number(y, radix, !y.startsWith("-"));
                 num3 = func.run(num1, num2);
+                
+                if (m != null){
+                    num1.setM(m);
+                    num2.setM(m);
+                }
                 
                 br.write("[answer] ");
                 for(char d: num3.getChars()){
