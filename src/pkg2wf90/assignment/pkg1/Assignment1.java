@@ -42,7 +42,6 @@ public class Assignment1 {
                 br.write(Assignment + System.getProperty("line.separator"));
                 a = sc.nextLine();
                 while(!sc.hasNext() || !a.trim().isEmpty()){
-                    
                     if(a.startsWith("[x]")){
                         String[] xl = a.split(" ");
                         x = xl[xl.length-1];
@@ -95,17 +94,20 @@ public class Assignment1 {
                     numM = new Number(m, radix, !m.startsWith("-"));
                 }
                 
-                
-                
-                try {
+                System.out.println("x: " + x);
+                if(y != null){
+                    System.out.println("y: " + y);
+                }
+                System.out.println("x length: " + x.length());
+                //try {
                     num3 = func.run(num1, num2, numM);
+                    System.out.println("num3 length: " + num3.getChars().length);
                     br.write("[answer] ");
                     for(char d: num3.getChars()){
                         br.write(d);
                     }
                 
                     br.write(System.getProperty("line.separator"));
-                    System.out.print("\n");
                     if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
                         br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
                         br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
@@ -116,10 +118,11 @@ public class Assignment1 {
                         br.write("[answer-a] " + num3.getA());
                         br.write("[answer-b] " + num3.getB());
                     }
+                //} catch (Exception e) {
+                //    br.write("exception " + e + " thrown");
+                //} 
                     
-                } catch (Exception e) {
-                    br.write("error " + e + "was caught");
-                }
+
                 br.write(System.getProperty("line.separator"));
             } 
         }

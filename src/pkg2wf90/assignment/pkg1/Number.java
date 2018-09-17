@@ -26,9 +26,9 @@ public class Number {
     private boolean positive;
     private int countAdd;
     private int countMult;
-    private int d;
-    private int a;
-    private int b;
+    private Number d;
+    private Number a;
+    private Number b;
     private int[] m = null;
     
     static{
@@ -51,7 +51,11 @@ public class Number {
     }
     
     Number(String number, int radix, boolean positive){
-        this.number = number.toCharArray();
+        if(positive){
+            this.number = number.toCharArray();
+        } else {
+            this.number = number.split("-")[number.split("-").length-1].toCharArray();
+        }
         this.radix = radix;
         this.positive = positive;
     }
@@ -65,7 +69,7 @@ public class Number {
     
     public void stringToIntArr(int l){
         int index = 0;
-        if(!positive){
+        if(number[0] == '-'){
             index = 1;
         }
         int[] result = new int[l];
@@ -184,27 +188,27 @@ public class Number {
         return this.countMult;
     }
     
-    public void setA(int a){
+    public void setA(Number a){
         this.a = a;
     } 
     
-    public void setB(int b){
+    public void setB(Number b){
         this.b = b;
     }
     
-    public void setD(int d){
+    public void setD(Number d){
         this.d = d;
     }
     
-    public int getA(){
+    public Number getA(){
         return a;
     }
     
-    public int getB(){
+    public Number getB(){
         return b;
     }
     
-    public int getD(){
+    public Number getD(){
         return d;
     }
     
