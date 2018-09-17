@@ -12,6 +12,7 @@ public class AddSub extends Function{
      * 
      * @param num1 The first number
      * @param num2 The second number
+     * @param m The given m (= null if not given)
      * @return the result of the addition/subtraction
      */
     @Override
@@ -23,6 +24,8 @@ public class AddSub extends Function{
         } else {
             ans = sub(num1, num2);
         }
+        
+        // We need to do a modular reduction if we have a given m
         if (m != null) {
             Reduce reduction = new Reduce();
             ans = reduction.run(ans, null, m);

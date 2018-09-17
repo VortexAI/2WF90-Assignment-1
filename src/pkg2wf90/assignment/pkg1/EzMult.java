@@ -25,9 +25,13 @@ public class EzMult extends Function{
         } else {
             ans = mult(num1, num2, false);
         }
+        
+        // We need to do a modular reduction if we have a given m
         if (m != null) {
             Reduce reduction = new Reduce();
             Number ans2 = reduction.run(ans, null, m);
+            
+            // We need to remember the additions and multiplications we did
             ans2.setCountAdd(ans.getCountAdd());
             ans2.setCountMult(ans.getCountMult());
             ans = ans2;
