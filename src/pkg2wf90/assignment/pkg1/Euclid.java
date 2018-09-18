@@ -94,6 +94,9 @@ public class Euclid extends Function{
      * @return quotient of division
      */
     Number division(Number num1, Number num2) {
+        // remove zeroes just to be sure
+        removeZeros(num1);
+        removeZeros(num2);
         int[] a = num1.getIntArr();
         int[] b = num2.getIntArr();
         int k = a.length;
