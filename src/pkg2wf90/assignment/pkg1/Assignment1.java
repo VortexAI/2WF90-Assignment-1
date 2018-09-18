@@ -77,7 +77,7 @@ public class Assignment1 {
                     func = new Karatsuba();
                 } else if(Assignment.equals("[reduce]")) {
                     func = new Reduce();
-                } else if(Assignment.equals("[invert]")){
+                } else if(Assignment.equals("[inverse]")){
                     func = new Invert();
                 } else {
                     func = new Euclid();
