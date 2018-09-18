@@ -95,8 +95,8 @@ public class Euclid extends Function{
      */
     Number division(Number num1, Number num2) {
         // remove zeroes just to be sure
-        removeZeros(num1);
-        removeZeros(num2);
+        num1 = removeZeros(num1);
+        num2 = removeZeros(num2);
         int[] a = num1.getIntArr();
         int[] b = num2.getIntArr();
         int k = a.length;
