@@ -81,12 +81,9 @@ public class Euclid extends Function{
             y1.flip();
             y = y1;
         }
-        d.intToStringArr(d.getIntArr());
-        x.intToStringArr(x.getIntArr());
-        y.intToStringArr(y.getIntArr());
         d.setD(d);
-        x.setA(x);
-        y.setB(y);
+        d.setA(x);
+        d.setB(y);
         
         x.intToStringArr(x.getIntArr());
         System.out.print("x: ");             
@@ -104,7 +101,7 @@ public class Euclid extends Function{
         System.out.println();
         y.stringToIntArr(y.getChars().length);
             
-        return x;
+        return d;
     }
     
     /**
