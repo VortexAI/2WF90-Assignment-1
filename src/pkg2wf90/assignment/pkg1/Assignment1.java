@@ -114,9 +114,9 @@ public class Assignment1 {
                     }
                 
                     if(func.getClass() == Euclid.class){
-                        br.write("[answer-d] " + num3.getD().getChars().toString());
-                        br.write("[answer-a] " + num3.getA().getChars().toString());
-                        br.write("[answer-b] " + num3.getB().getChars().toString());
+                        br.write("[answer-d] " + new String(num3.getD().getChars()));
+                        br.write("[answer-a] " + new String(num3.getA().getChars()));
+                        br.write("[answer-b] " + new String(num3.getB().getChars()));
                     }
                 } catch (Exception e) {
                     br.write("exception " + e + " thrown");
