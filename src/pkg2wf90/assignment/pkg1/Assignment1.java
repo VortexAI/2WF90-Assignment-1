@@ -102,9 +102,11 @@ public class Assignment1 {
                 try {
                     num3 = func.run(num1, num2, numM);
                     System.out.println("num3 length: " + num3.getChars().length);
-                    br.write("[answer] ");
-                    for(char d: num3.getChars()){
-                        br.write(d);
+                    if(!Assignment.equals("euclid")){
+                        br.write("[answer] ");
+                        for(char d: num3.getChars()){
+                            br.write(d);
+                        }
                     }
                 
                     br.write(System.getProperty("line.separator"));
@@ -114,9 +116,10 @@ public class Assignment1 {
                     }
                 
                     if(func.getClass() == Euclid.class){
-                        br.write("[answer-d] " + new String(num3.getD().getChars()));
-                        br.write("[answer-a] " + new String(num3.getA().getChars()));
-                        br.write("[answer-b] " + new String(num3.getB().getChars()));
+                        br.write("[answer-d] " + new String(num3.getD().getChars()) + System.getProperty("line.separator"));
+                        
+                        br.write("[answer-a] " + new String(num3.getA().getChars()) + System.getProperty("line.separator"));
+                        br.write("[answer-b] " + new String(num3.getB().getChars()) + System.getProperty("line.separator"));
                     }
                 } catch (Exception e) {
                     br.write("exception " + e + " thrown");
