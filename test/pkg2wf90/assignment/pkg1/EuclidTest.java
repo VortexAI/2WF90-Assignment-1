@@ -39,16 +39,17 @@ public class EuclidTest {
 
     /**
      * Test of run method, of class Euclid.
-     */
+    */
     @Test
     public void testRun() {
         System.out.println("run");
-        Number a = new Number("36", 10, true);
-        Number b = new Number("30", 10, true);
+        Number a = new Number("5896363941d32eccd5c", 16, true);
+        Number b = new Number("c7eb8a91fbad0d1c1f03", 16, true);
         Euclid instance = new Euclid();
-        Number expResult = new Number("6", 10, true);
+        Number expResult = new Number("0001", 10, true);
         Number result = instance.run(a, b, a);
         for(int i = result.getChars().length-1; i >= 0; i--) {
+            System.out.println("test: " + result.getChars() [i]);
             assertEquals(expResult.getChars() [i], result.getChars() [i]);
         }
     }
@@ -75,9 +76,9 @@ public class EuclidTest {
     @Test
     public void testDivision() {
         System.out.println("division");
-        int[] a = new int[] {2, 5};
-        int[] b = new int[] {6};
-        int[] q = new int[] {0, 4};
+        int[] a = new int[] {2,0,3,9};
+        int[] b = new int[] {1,3,1,9};
+        int[] q = new int[] {1};
         Number num1 = new Number(a, 10, true);
         Number num2 = new Number(b, 10, true);
         Euclid instance = new Euclid();
