@@ -99,7 +99,7 @@ public class Assignment1 {
                     System.out.println("y: " + y);
                 }
                 System.out.println("x length: " + x.length());
-                //try {
+                try {
                     num3 = func.run(num1, num2, numM);
                     System.out.println("num3 length: " + num3.getChars().length);
                     br.write("[answer] ");
@@ -114,13 +114,13 @@ public class Assignment1 {
                     }
                 
                     if(func.getClass() == Euclid.class){
-                        br.write("[answer-d] " + num3.getD());
-                        br.write("[answer-a] " + num3.getA());
-                        br.write("[answer-b] " + num3.getB());
+                        br.write("[answer-d] " + num3.getD().getChars().toString());
+                        br.write("[answer-a] " + num3.getA().getChars().toString());
+                        br.write("[answer-b] " + num3.getB().getChars().toString());
                     }
-                //} catch (Exception e) {
-                //    br.write("exception " + e + " thrown");
-                //} 
+                } catch (Exception e) {
+                    br.write("exception " + e + " thrown");
+                } 
                     
 
                 br.write(System.getProperty("line.separator"));

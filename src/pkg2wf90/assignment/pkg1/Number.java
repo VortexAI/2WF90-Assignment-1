@@ -29,7 +29,6 @@ public class Number {
     private Number d;
     private Number a;
     private Number b;
-    private int[] m = null;
     
     static{
         libChar.put('0', 0);
@@ -210,13 +209,5 @@ public class Number {
     
     public Number getD(){
         return d;
-    }
-    
-    public void setM(String m){
-        this.m = stringToIntArrLoc(m);
-    }
-    
-    public int[] getM(){
-        return m;
     }
 }
