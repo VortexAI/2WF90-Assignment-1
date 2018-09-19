@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package pkg2wf90.assignment.pkg1;
 
@@ -14,11 +12,12 @@ import java.util.Scanner;
 
 /**
  *
- * @author s151810
+ * @author Stijn Beukers
  */
 public class Assignment1 {
 
     private void run(String[] args) throws FileNotFoundException, IOException{
+        //read desired file and start reading
         String file = System.getProperty("user.dir");
         
         file = file + "\\" + args[0];
@@ -27,20 +26,25 @@ public class Assignment1 {
         FileWriter fw = new FileWriter("output.txt");
         BufferedWriter br = new BufferedWriter(fw);
         
-        
+        //main loop continues until end of the provided txt file
         while(sc.hasNext()){
             String a = sc.nextLine();
             br.write(a + System.getProperty("line.separator"));
+            //starts whenever a string is found starting with [radix]
             if(a.startsWith("[radix]")){ 
                 int radix = 0;
+                // values used for intialization of numbers
                 String x = null;
                 String y = null;
                 String m = null;
+                //resulting number
                 Number num3;
                 radix = Integer.parseInt(a.split(" ")[a.split(" ").length-1]);
                 String Assignment = sc.nextLine();
                 br.write(Assignment + System.getProperty("line.separator"));
                 a = sc.nextLine();
+                //While loop that checks for parameters x, y and m. Stops when
+                //no lines are left to be examined.
                 while(!sc.hasNext() || !a.trim().isEmpty()){
                     if(a.startsWith("[x]")){
                         String[] xl = a.split(" ");
@@ -66,7 +70,7 @@ public class Assignment1 {
                 }
                 
                 
-                
+                //create instance of the correct function
                 if(Assignment.equals("[add]")){
                     func = new AddSub(true);    
                 } else if(Assignment.equals("[subtract]")){
@@ -82,6 +86,8 @@ public class Assignment1 {
                 } else {
                     func = new Euclid();
                 }
+                
+                //intialize the required numbers
                 Number num1 = new Number(x, radix, !x.startsWith("-"));
                 Number num2 = null;
                 Number numM = null;
@@ -89,19 +95,13 @@ public class Assignment1 {
                     num2 = new Number(y, radix, !y.startsWith("-"));
                 }
                 
-                
                 if (m != null){
                     numM = new Number(m, radix, !m.startsWith("-"));
                 }
                 
-                System.out.println("x: " + x);
-                if(y != null){
-                    System.out.println("y: " + y);
-                }
-                System.out.println("x length: " + x.length());
+                //write all results
                 try {
                     num3 = func.run(num1, num2, numM);
-                    System.out.println("num3 length: " + num3.getChars().length);
                     if(!Assignment.equals("euclid")){
                         br.write("[answer] ");
                         for(char d: num3.getChars()){
@@ -124,8 +124,7 @@ public class Assignment1 {
                 } catch (Exception e) {
                     br.write("exception " + e + " thrown");
                 } 
-                    
-
+                
                 br.write(System.getProperty("line.separator"));
             } 
         }

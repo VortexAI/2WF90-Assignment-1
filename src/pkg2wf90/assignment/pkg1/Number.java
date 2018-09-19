@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package pkg2wf90.assignment.pkg1;
 
@@ -13,7 +11,7 @@ import java.util.Map;
 
 /**
  *
- * @author s151810
+ * @author Stijn Beukes
  */
 public class Number {
     private final char[] libInt = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
@@ -66,6 +64,11 @@ public class Number {
         this.number = intToStringArr(value);
     }
     
+    /**
+     * Takes a length and initializes this Number's int array to be of equal v
+     * value to this Number's provided String and of equal length to l
+     * @param l the length of the desired int array
+     */
     public void stringToIntArr(int l){
         int index = 0;
         if(number[0] == '-'){
@@ -82,6 +85,11 @@ public class Number {
         this.value = result;
     }
     
+    /**
+     * takes a string and turns it into an int array of equal value
+     * @param m String to be turned into a 
+     * @return int array of equal value to String m
+     */
     public int[] stringToIntArrLoc(String m){
         int index = 0;
         if(!positive){
@@ -95,7 +103,11 @@ public class Number {
         return result;
     }
     
-    
+    /**
+     * Takes an int array and turns it into a char array of equal value
+     * @param a int array to be turned into a String array
+     * @return String array of equal value to int array {@code a}
+     */
     public char[] intToStringArr(int[] a){
         
         char[] result;
@@ -132,7 +144,7 @@ public class Number {
     /**
      * Takes a number of equal length to be compared to.
      * @param other String you want to check to be smaller
-     * @return 
+     * @return True if this Number is bigger than {@code other}. Otherwise false
      */
     public boolean thisBiggerThan(Number other){
         int[] otherArray = other.getIntArr();
@@ -162,51 +174,102 @@ public class Number {
         return b;
     }
     
+    /**
+     * sets value of positive
+     * @return value of whether this Number is positive
+     */
     public boolean isPositive(){
         boolean b = positive;
         return b;
     }
     
+    /**
+     * gets value of the Numbers int array
+     * @return returns a copy of the array holding the integer values of the
+     * Number
+     */
     public int[] getIntArr(){
         return value.clone();
     }
     
+    /**
+     * sets Number's countAdd variable
+     * @param i is used to set {@code countAdd}
+     */
     public void setCountAdd(int i){
         this.countAdd = i;
     }
     
+    /**
+     * returns Number's countAdd variable
+     * @return returns the value of countAdd
+     */
     public int getCountAdd(){
         return this.countAdd;
     }
     
+    /**
+     * sets Number's countMult variable
+     * @param i is used to set the value of {@code countMult}
+     */
     public void setCountMult(int i){
         this.countMult = i;
     }
     
+    /**
+     * returns Nubmer's countMult variable
+     * @return returns the value of countMult
+     */
     public int getCountMult(){
         return this.countMult;
     }
+    
+    /**
+     * sets value of this Number's a
+     * @param a is used to set this Number's {@code a} variable
+     */
     
     public void setA(Number a){
         this.a = a;
     } 
     
+    /**
+     * sets value of this Number's b
+     * @param b is used to set this Number's {@code b} variable
+     */
+    
     public void setB(Number b){
         this.b = b;
     }
     
+    /**
+     * sets value of this Number's d
+     * @param d is used to set this Number's {@code d} variable
+     */
     public void setD(Number d){
         this.d = d;
     }
     
+    /**
+     * returns value of this Number's a
+     * @return value of {@code a}
+     */
     public Number getA(){
         return a;
     }
     
+    /**
+     * returns value of this Number's b
+     * @return value of {@code b}
+     */
     public Number getB(){
         return b;
     }
     
+    /**
+     * returns value of this Number's d
+     * @return value of {@code d}
+     */
     public Number getD(){
         return d;
     }
