@@ -81,30 +81,10 @@ public class Euclid extends Function{
             y1.flip();
             y = y1;
         }
-        d.intToStringArr(d.getIntArr());
-        x.intToStringArr(x.getIntArr());
-        y.intToStringArr(y.getIntArr());
         d.setD(d);
-        x.setA(x);
-        y.setB(y);
-        
-        x.intToStringArr(x.getIntArr());
-        System.out.print("x: ");             
-        for (int i = 0; i <= x.getChars().length - 1 ; i++) {
-            System.out.print(x.getChars()[i]);  
-        }
-        System.out.println();
-        x.stringToIntArr(x.getChars().length);
-        
-        y.intToStringArr(y.getIntArr());
-        System.out.print("y: ");             
-        for (int i = 0; i <= y.getChars().length - 1 ; i++) {
-            System.out.print(y.getChars()[i]);  
-        }
-        System.out.println();
-        y.stringToIntArr(y.getChars().length);
-            
-        return x;
+        d.setA(x);
+        d.setB(y);
+        return d;
     }
     
     /**
@@ -114,6 +94,9 @@ public class Euclid extends Function{
      * @return quotient of division
      */
     Number division(Number num1, Number num2) {
+        // remove zeroes just to be sure
+        num1 = removeZeros(num1);
+        num2 = removeZeros(num2);
         int[] a = num1.getIntArr();
         int[] b = num2.getIntArr();
         int k = a.length;
