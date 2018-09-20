@@ -50,8 +50,8 @@ public class EzMult extends Function{
         int base = num1.getRadix();
         int carry = 0;
         int temp = 0;
-        int countAdd = 0;
-        int countMult = 0;
+        int countAdd = num1.getCountAdd() + num2.getCountAdd();
+        int countMult = num1.getCountMult() + num2.getCountMult();
         
         // reverse the numbers to make the calculations with the int Array easier
         Number reverseNum1 = new Number(reverse(num1.getIntArr()), num1.getRadix(), num1.isPositive());

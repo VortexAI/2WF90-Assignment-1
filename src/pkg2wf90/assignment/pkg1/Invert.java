@@ -44,8 +44,7 @@ public class Invert extends Function{
         Number remainder;
         
         // The while loop checks if mPrime is not already zero
-        while (isNotZero(mPrime.getIntArr())) {
-            System.out.println(Arrays.toString(mPrime.getIntArr()));
+        while (isBiggerThanZero(mPrime.getIntArr())) {
             // quotient is calculated by using big integer division
             quotient = euclid.division(aPrime, mPrime);
             // remainder is calculated by using big integer multiplication and subtraction
@@ -56,6 +55,10 @@ public class Invert extends Function{
             x3 = addSub.sub(x1, mult.run(quotient, x2, null));
             x1 = x2;
             x2 = x3;          
+        }
+        // Make x1 on the positive side modulo m
+        if (!x1.isPositive()) {
+            x1 = addSub.add(x1, m);
         }
         // If aPrime is equal to 1 we have found an inverse otherwise not
         if (isOne(aPrime.getIntArr())) {
@@ -70,9 +73,9 @@ public class Invert extends Function{
      * @param array The int array to check
      * @return returns whether the int array is zero or not
      */
-    boolean isNotZero (int[] array){
+    boolean isBiggerThanZero (int[] array){
         // Loops over the entire array to check if any of the values are bigger than zero
-        for (int i = 0; i < array.length - 1; i++){
+        for (int i = 0; i < array.length; i++){
             if (array[i] > 0){
                 return true;
             }
@@ -86,7 +89,7 @@ public class Invert extends Function{
      */
     boolean isOne (int[] array) {
         // Checks if any of the other spots of the array is bigger than zero
-        for (int i = 0; i < array.length - 2; i++){
+        for (int i = 0; i < array.length - 1; i++){
             if (array[i] > 0) {
                 return false;
             }
