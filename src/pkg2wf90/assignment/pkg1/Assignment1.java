@@ -29,7 +29,6 @@ public class Assignment1 {
         //main loop continues until end of the provided txt file
         while(sc.hasNext()){
             String a = sc.nextLine();
-            br.write(a + System.getProperty("line.separator"));
             //starts whenever a string is found starting with [radix]
             if(a.startsWith("[radix]")){ 
                 int radix = 0;
@@ -107,9 +106,10 @@ public class Assignment1 {
                         for(char d: num3.getChars()){
                             br.write(d);
                         }
+                        br.write(System.getProperty("line.separator"));
                     }
                 
-                    br.write(System.getProperty("line.separator"));
+                   
                     if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
                         br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
                         br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
