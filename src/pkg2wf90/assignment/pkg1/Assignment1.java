@@ -82,51 +82,58 @@ public class Assignment1 {
                     func = new Reduce();
                 } else if(Assignment.equals("[inverse]")){
                     func = new Invert();
-                } else {
+                } else if (Assignment.equals("[euclid]")){
                     func = new Euclid();
+                } else {
+                    br.write("wrong assignment given");
                 }
                 
+                if(func != null){
                 //intialize the required numbers
-                Number num1 = new Number(x, radix, !x.startsWith("-"));
-                Number num2 = null;
-                Number numM = null;
-                if (y != null){
-                    num2 = new Number(y, radix, !y.startsWith("-"));
-                }
+                    Number num1 = new Number(x, radix, !x.startsWith("-"));
+                    Number num2 = null;
+                    Number numM = null;
+                    if (y != null){
+                        num2 = new Number(y, radix, !y.startsWith("-"));
+                    }
+                    
+                    if (m != null){
+                        numM = new Number(m, radix, !m.startsWith("-"));
+                    }
                 
-                if (m != null){
-                    numM = new Number(m, radix, !m.startsWith("-"));
-                }
-                
-                //write all results
-                try {
-                    num3 = func.run(num1, num2, numM);
-                    if(!(func.getClass()== Euclid.class)){
-                        br.write("[answer] ");
-                        for(char d: num3.getChars()){
-                            br.write(d);
+                    //write all results
+                    try {
+                        num3 = func.run(num1, num2, numM);
+                        //done for all functions except euclid
+                        if(!(func.getClass()== Euclid.class)){
+                            br.write("[answer] ");
+                            for(char d: num3.getChars()){
+                                br.write(d);
+                            }
+                            br.write(System.getProperty("line.separator"));
                         }
-                        br.write(System.getProperty("line.separator"));
-                    }
                 
-                   
-                    if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
-                        br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
-                        br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
-                    }
-                
-                    if(func.getClass() == Euclid.class){
-                        br.write("[answer-d] " + new String(num3.getD().getChars()) + System.getProperty("line.separator"));
+                        //only done for primary school multiplication and
+                        //karatsuba
+                        if((func.getClass() == EzMult.class)||(func.getClass() == Karatsuba.class)){
+                            br.write("[count-add] " + num3.getCountAdd() + System.getProperty("line.separator"));
+                            br.write("[count-mul] " + num3.getCountMult() + System.getProperty("line.separator"));
+                        }
                         
-                        br.write("[answer-a] " + new String(num3.getA().getChars()) + System.getProperty("line.separator"));
-                        br.write("[answer-b] " + new String(num3.getB().getChars()) + System.getProperty("line.separator"));
-                    }
-                } catch (Exception e) {
-                    br.write("exception " + e + " thrown");
-                } 
+                        //only done for euclid
+                        if(func.getClass() == Euclid.class){
+                            br.write("[answer-d] " + new String(num3.getD().getChars()) + System.getProperty("line.separator"));
+                            
+                            br.write("[answer-a] " + new String(num3.getA().getChars()) + System.getProperty("line.separator"));
+                            br.write("[answer-b] " + new String(num3.getB().getChars()) + System.getProperty("line.separator"));
+                        }
+                    } catch (Exception e) {
+                        br.write("exception " + e + " thrown");
+                    } 
                 
-                br.write(System.getProperty("line.separator"));
-            } 
+                    br.write(System.getProperty("line.separator"));
+                } 
+            }
         }
         
         br.flush();

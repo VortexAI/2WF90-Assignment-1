@@ -146,8 +146,11 @@ public class Number {
      * @param other String you want to check to be smaller
      * @return True if this Number is bigger than {@code other}. Otherwise false
      */
-    public boolean thisBiggerThan(Number other){
+    public boolean thisBiggerThan(Number other) throws Exception{
         int[] otherArray = other.getIntArr();
+        if(!(otherArray.length == value.length)){
+            throw new Exception("Do thisBiggerThan only on Numbers of equal size");
+        }
         for(int i = 0; i < value.length; i++){
             if(value[i] == otherArray[i]){
                   
