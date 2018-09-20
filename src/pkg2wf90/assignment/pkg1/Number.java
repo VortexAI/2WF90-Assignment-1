@@ -189,7 +189,7 @@ public class Number {
      * Number
      */
     public int[] getIntArr(){
-        return value.clone();
+        return value;
     }
     
     /**
