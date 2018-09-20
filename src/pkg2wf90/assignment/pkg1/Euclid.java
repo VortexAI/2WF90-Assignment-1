@@ -24,6 +24,9 @@ public class Euclid extends Function{
      * @return the result of the euclidian algorithm
      */
     Number euclid(Number num1, Number num2) {
+        // convert string to ints
+        num1.stringToIntArr(num1.getChars().length);
+        num2.stringToIntArr(num2.getChars().length);
         if (!num1.isPositive()) {
             num1.flip();
         }
@@ -35,10 +38,13 @@ public class Euclid extends Function{
             Number temp = num2;
             num2 = num1;
             num1 = temp;
+        } else if ((num1.getIntArr().length == num2.getIntArr().length) &&
+                (num2.thisBiggerThan(num1))) {
+            Number temp = num2;
+            num2 = num1;
+            num1 = temp;           
         }
-        // convert string to ints without getting leading zeros
-        num1.stringToIntArr(num1.getChars().length);
-        num2.stringToIntArr(num2.getChars().length);
+
         // initialize variables
         AddSub subtract = new AddSub(false);
         EzMult mult = new EzMult();
