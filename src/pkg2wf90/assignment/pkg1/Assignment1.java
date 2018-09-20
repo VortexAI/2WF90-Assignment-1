@@ -102,7 +102,7 @@ public class Assignment1 {
                 //write all results
                 try {
                     num3 = func.run(num1, num2, numM);
-                    if(!Assignment.equals("euclid")){
+                    if(!Assignment.equals("[euclid]")){
                         br.write("[answer] ");
                         for(char d: num3.getChars()){
                             br.write(d);
