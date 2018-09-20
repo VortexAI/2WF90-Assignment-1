@@ -43,7 +43,7 @@ public class Euclid extends Function{
         AddSub subtract = new AddSub(false);
         EzMult mult = new EzMult();
         int[] zeroArray = new int[num1.getIntArr().length];
-        int[] oneArray = new int[num1.getIntArr().length];
+        int[] oneArray = new int[1];
         oneArray[0] = 1;
         Number x1 = new Number(oneArray, num1.getRadix(), true);
         Number x2 = new Number(zeroArray, num1.getRadix(), true);
