@@ -111,7 +111,6 @@ public class Karatsuba extends Function{
         //x*y = x_hi*y_hi*b^n + (x_hi*y_lo + x_lo*y_hi)*b^n/2 + x_lo*y_lo
         Number xy = add.run(add.run(shift(xy_hi, size), shift(SecondTerm, size/2), null),xy_lo,null);
         
-        System.out.println(xy.getCountMult() + " " + xy.getCountAdd());
         return xy;
     }
 
