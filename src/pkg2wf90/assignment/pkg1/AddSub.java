@@ -17,7 +17,18 @@ public class AddSub extends Function{
      */
     @Override
     Number run(Number num1, Number num2, Number m) {
-        
+        //Take over the counts for Karatsuba counting
+        int addCount = num1.getCountAdd() + num2.getCountAdd();
+        int multCount = num1.getCountMult() + num2.getCountMult();
+
+        //Add the size of the smallest number to the counts
+        //since this will be the amount of elementary operations
+        if(num1.getChars().length > num2.getChars().length){
+                addCount += num2.getChars().length;
+        } else {
+                addCount += num1.getChars().length;	
+        }
+
         Number ans = null;
         if(add) {
             ans = add(num1, num2);
@@ -30,6 +41,11 @@ public class AddSub extends Function{
             Reduce reduction = new Reduce();
             ans = reduction.run(ans, null, m);
         }
+        
+        //Set the counts again
+        ans.setCountAdd(addCount);
+        ans.setCountMult(multCount);
+        
         return ans;
     }
     
