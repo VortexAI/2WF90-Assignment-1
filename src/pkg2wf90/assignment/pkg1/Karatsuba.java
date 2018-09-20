@@ -9,10 +9,7 @@ package pkg2wf90.assignment.pkg1;
  *
  * @author s166967
  */
-public class Karatsuba extends Function{
-    int multCount = 0;
-    int addSubCount = 0;
-    
+public class Karatsuba extends Function{    
     //Set up objects of other operators, will be used later.
     EzMult mult = new EzMult();
     AddSub add = new AddSub(true);
@@ -37,13 +34,14 @@ public class Karatsuba extends Function{
         //Make sure the sign is correct based on the earlier set variable.
         if(ab.isPositive() != positive){
             ab.flip();
-            ab = new Number(ab.getIntArr(), ab.getRadix(), ab.isPositive());
+            //ab = new Number(ab.getIntArr(), ab.getRadix(), ab.isPositive());
         }
         
         return ab;
     }
     
     Number Karat(Number a, Number b) {
+        
         //Get the sizes of the numbers.
         int aSize = a.getChars().length;
         int bSize = b.getChars().length;
@@ -57,8 +55,7 @@ public class Karatsuba extends Function{
         }
         
         //If either of the nubmers has a size less than 2, start recursing back
-        if(aSize < 2 || bSize < 2){
-            multCount++; 
+        if(aSize < 2 || bSize < 2){  
             return mult.run(a,b, null);
         }
         
@@ -110,15 +107,11 @@ public class Karatsuba extends Function{
         //Calculate second term: 
         //x_hi*y_lo +x_lo*y_hi = (x_hi +x_lo)(y_hi +y_lo)-x_hi*y_hi *x_lo* y_lo
         Number SecondTerm = sub.run(sub.run(Karat(add.run(x_hi, x_lo, null), add.run(y_hi, y_lo, null)),xy_hi, null),xy_lo,null);
-        
         //Calculate x times y where the SecondTerm = (x_hi*y_lo + x_lo*y_hi)
         //x*y = x_hi*y_hi*b^n + (x_hi*y_lo + x_lo*y_hi)*b^n/2 + x_lo*y_lo
         Number xy = add.run(add.run(shift(xy_hi, size), shift(SecondTerm, size/2), null),xy_lo,null);
-                
-        addSubCount += 6;
-        xy.setCountMult(multCount);
-        xy.setCountAdd(addSubCount);
         
+        System.out.println(xy.getCountMult() + " " + xy.getCountAdd());
         return xy;
     }
 
@@ -165,6 +158,9 @@ public class Karatsuba extends Function{
             shiftedArray[i] = 0;
         }
         Number shifted = new Number(shiftedArray, c.getRadix(), c.isPositive());
+        shifted.setCountMult(c.getCountMult());
+        shifted.setCountAdd(c.getCountAdd());
+        
         return shifted;
     }
 }
