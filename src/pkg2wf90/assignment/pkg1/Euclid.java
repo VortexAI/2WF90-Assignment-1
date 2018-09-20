@@ -24,6 +24,12 @@ public class Euclid extends Function{
      * @return the result of the euclidian algorithm
      */
     Number euclid(Number num1, Number num2) {
+        if (!num1.isPositive()) {
+            num1.flip();
+        }
+        if (!num2.isPositive()) {
+            num2.flip();
+        }
         // check which number is larger and swap appropiately
         if (num2.getChars().length > num1.getChars().length) {
             Number temp = num2;

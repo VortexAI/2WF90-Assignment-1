@@ -56,6 +56,10 @@ public class Invert extends Function{
             x1 = x2;
             x2 = x3;          
         }
+        // Make x1 on the positive side modulo m
+        if (!x1.isPositive()) {
+            x1 = addSub.add(x1, m);
+        }
         // If aPrime is equal to 1 we have found an inverse otherwise not
         if (isOne(aPrime.getIntArr())) {
             return x1;
