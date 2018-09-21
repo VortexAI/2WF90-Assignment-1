@@ -22,7 +22,7 @@ public class Assignment1 {
         
         file = file + "\\" + args[0];
         Scanner sc = new Scanner(new FileReader(file));
-        Function func = null;
+        
         FileWriter fw = new FileWriter("output.txt");
         BufferedWriter br = new BufferedWriter(fw);
         
@@ -36,6 +36,7 @@ public class Assignment1 {
                 String x = null;
                 String y = null;
                 String m = null;
+                Function func = null;
                 //resulting number
                 Number num3;
                 radix = Integer.parseInt(a.split(" ")[a.split(" ").length-1]);
@@ -86,6 +87,7 @@ public class Assignment1 {
                     func = new Euclid();
                 } else {
                     br.write("wrong assignment given");
+                    br.write(System.getProperty("line.separator"));
                 }
                 
                 if(func != null){
