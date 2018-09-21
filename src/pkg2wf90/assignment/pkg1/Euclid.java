@@ -27,28 +27,38 @@ public class Euclid extends Function{
         // convert string to ints
         num1.stringToIntArr(num1.getChars().length);
         num2.stringToIntArr(num2.getChars().length);
+        // make numbers positive and save old value
+        Number oldNum1 = num1;
+        Number oldNum2 = num2;
         if (!num1.isPositive()) {
             num1.flip();
         }
         if (!num2.isPositive()) {
             num2.flip();
         }
-        // check which number is larger and swap appropiately
+        // check which number is larger and swap appropiately + boolean
+        boolean swapped = false;
         if (num2.getChars().length > num1.getChars().length) {
             Number temp = num2;
             num2 = num1;
             num1 = temp;
+            oldNum1 = num1;
+            oldNum2 = num2;
+            swapped = true;
         } else if ((num1.getIntArr().length == num2.getIntArr().length) &&
                 (num2.thisBiggerThan(num1))) {
             Number temp = num2;
             num2 = num1;
-            num1 = temp;           
+            num1 = temp; 
+            oldNum1 = num1;
+            oldNum2 = num2;
+            swapped = true;
         }
 
         // initialize variables
         AddSub subtract = new AddSub(false);
         EzMult mult = new EzMult();
-        int[] zeroArray = new int[num1.getIntArr().length];
+        int[] zeroArray = new int[num2.getIntArr().length];
         int[] oneArray = new int[1];
         oneArray[0] = 1;
         Number x1 = new Number(oneArray, num1.getRadix(), true);
@@ -81,21 +91,26 @@ public class Euclid extends Function{
             y2 = y3;          
         }
         d = num1;
-        if (num1.isPositive()) {
+        if (oldNum1.isPositive()) {
             x = x1;
         } else {
             x1.flip();
             x = x1;
         }
-        if (num2.isPositive()) {
+        if (oldNum2.isPositive()) {
             y = y1;
         } else {
             y1.flip();
             y = y1;
         }
         d.setD(d);
-        d.setA(x);
-        d.setB(y);
+        if (swapped) {   
+            d.setA(y);
+            d.setB(x);
+        } else {
+            d.setA(x);
+            d.setB(y);
+        }
         return d;
     }
     
