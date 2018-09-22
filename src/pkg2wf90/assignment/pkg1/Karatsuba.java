@@ -19,7 +19,7 @@ public class Karatsuba extends Function{
     Number run(Number a, Number b, Number m) {
         //Check if the answer will be positive
         boolean positive = (a.isPositive() == b.isPositive());
-        
+
         //Set both numbers to positive for simplicity.
         if(!a.isPositive()){
             a.flip();
@@ -34,7 +34,16 @@ public class Karatsuba extends Function{
         //Make sure the sign is correct based on the earlier set variable.
         if(ab.isPositive() != positive){
             ab.flip();
-            //ab = new Number(ab.getIntArr(), ab.getRadix(), ab.isPositive());
+            
+            //Prever counters from being reset by storing...
+            int countMult = ab.getCountMult();
+            int countAdd  = ab.getCountAdd();
+            
+            ab = new Number(ab.getIntArr(), ab.getRadix(), ab.isPositive());
+            
+            //.. and setting them back again
+            ab.setCountMult(countMult);
+            ab.setCountAdd(countAdd);
         }
         
         return ab;
