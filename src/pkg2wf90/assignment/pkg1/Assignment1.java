@@ -31,6 +31,7 @@ public class Assignment1 {
             String a = sc.nextLine();
             //starts whenever a string is found starting with [radix]
             if(a.startsWith("[radix]")){ 
+                br.write(a + System.getProperty("line.separator"));
                 int radix = 0;
                 // values used for intialization of numbers
                 String x = null;
@@ -39,36 +40,9 @@ public class Assignment1 {
                 Function func = null;
                 //resulting number
                 Number num3;
+                
                 radix = Integer.parseInt(a.split(" ")[a.split(" ").length-1]);
                 String Assignment = sc.nextLine();
-                br.write(Assignment + System.getProperty("line.separator"));
-                a = sc.nextLine();
-                //While loop that checks for parameters x, y and m. Stops when
-                //no lines are left to be examined.
-                while(!sc.hasNext() || !a.trim().isEmpty()){
-                    if(a.startsWith("[x]")){
-                        String[] xl = a.split(" ");
-                        x = xl[xl.length-1];
-                        br.write(a + System.getProperty("line.separator"));
-                    }
-                    if(a.startsWith("[y]")){
-                        String[] yl = a.split(" ");
-                        y = yl[yl.length-1];
-                        br.write(a + System.getProperty("line.separator"));
-                    }
-                    if(a.startsWith("[m]")){
-                        String[] m1 = a.split(" ");
-                        m = m1[m1.length-1];
-                        br.write(a + System.getProperty("line.separator"));
-                    }
-                    if(sc.hasNext()){
-                        a = sc.nextLine();
-                        
-                    } else {
-                        break;
-                    }
-                }
-                
                 
                 //create instance of the correct function
                 if(Assignment.equals("[add]")){
@@ -86,12 +60,43 @@ public class Assignment1 {
                 } else if (Assignment.equals("[euclid]")){
                     func = new Euclid();
                 } else {
-                    br.write("wrong assignment given");
-                    br.write(System.getProperty("line.separator"));
+                    br.write("wrong assignment given" +System.getProperty("line.separator") + System.getProperty("line.separator"));
                 }
                 
                 if(func != null){
-                //intialize the required numbers
+                    br.write(Assignment + System.getProperty("line.separator"));
+                    a = sc.nextLine();
+                    //While loop that checks for parameters x, y and m. Stops when
+                    //no lines are left to be examined.
+                    while(!sc.hasNext() || !a.trim().isEmpty()){
+                        if(a.startsWith("[x]")){
+                            String[] xl = a.split(" ");
+                            x = xl[xl.length-1];
+                            br.write(a + System.getProperty("line.separator"));
+                        }
+                        if(a.startsWith("[y]")){
+                            String[] yl = a.split(" ");
+                            y = yl[yl.length-1];
+                            br.write(a + System.getProperty("line.separator"));
+                        }
+                        if(a.startsWith("[m]")){
+                            String[] m1 = a.split(" ");
+                            m = m1[m1.length-1];
+                            br.write(a + System.getProperty("line.separator"));
+                        }
+                        if(sc.hasNext()){
+                            a = sc.nextLine();
+                        
+                        } else {
+                        break;
+                        }
+                    }
+                
+                
+                
+                
+                    
+                    //intialize the required numbers
                     Number num1 = new Number(x, radix, !x.startsWith("-"));
                     Number num2 = null;
                     Number numM = null;
